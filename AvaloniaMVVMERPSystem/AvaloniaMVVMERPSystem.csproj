@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Folder Include="Classes\Location\" />
+		<Folder Include="Classes\StorageItem\" />
+		<Folder Include="Classes\User\" />
+		<Folder Include="DataBase\AddUserOrEmplyee\User\" />
+		<Folder Include="DataBase\AddUserOrEmplyee\Admin\" />
+		<Folder Include="DataBase\AddUserOrEmplyee\NormalEmplyee\" />
+		<Folder Include="DataBase\AddUserOrEmplyee\ModeratorEmployee\" />
+		<Folder Include="DataBase\InventoryAndLocations\Inventory\" />
+		<Folder Include="DataBase\InventoryAndLocations\CountryAndBranches\" />
+		<Folder Include="DataBase\InventoryAndLocations\Items\" />
+		<Folder Include="Models\" />
+		<Folder Include="ViewModels\AdminModViewModels\" />
+		<Folder Include="ViewModels\EmployeeViewModels\" />
+		<Folder Include="ViewModels\UserViewModels\" />
+		<Folder Include="Views\EmployeeViews\" />
+		<Folder Include="Views\AdminModViews\" />
+		<Folder Include="Views\UserViews\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Avalonia" Version="11.1.4" />
+		<PackageReference Include="Avalonia.Desktop" Version="11.1.4" />
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.1.4" />
+		<PackageReference Include="Avalonia.Fonts.Inter" Version="11.1.4" />
+		<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.1.4" />
+		<PackageReference Include="Avalonia.ReactiveUI" Version="11.1.4" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Include="Views\LoginView.axaml" />
+	</ItemGroup>
+</Project>

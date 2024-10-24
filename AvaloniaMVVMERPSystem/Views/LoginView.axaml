@@ -1,0 +1,38 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 x:Class="AvaloniaMVVMERPSystem.Views.LoginView"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:views="using:AvaloniaMVVMERPSystem.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 x:DataType="views:LoginViewModel">
+	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,0,0">
+		<Border BorderThickness="5" BorderBrush="Gray" CornerRadius="8">
+			<StackPanel Margin="5">
+				<TextBlock Text="Welcome to {CompanyName}" FontSize="20" Margin="20"/>
+				
+				<TextBlock Text="Username" Margin="10"/>
+				<TextBox Watermark="UserName" />
+				
+				<TextBlock Text="Password" Margin="10"/>
+				<TextBox Watermark="Password" />
+				
+				<StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="20">
+				
+					<Button Content="Login" Command="" Margin="0,0,10,0"/>
+					<Button Content="Regristor account" Command=""/>
+				
+				</StackPanel>
+				
+				<TextBlock Text="For Emplyees" HorizontalAlignment="Center" Margin="10"/>
+				
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+					
+					<Button Content="Emplyees" Command="" Margin="0,0,10,0"/>
+					<Button Content="Admin/Moderator" Command=""/>
+				
+				</StackPanel>
+			</StackPanel>
+		</Border>
+	</StackPanel>
+</UserControl>
