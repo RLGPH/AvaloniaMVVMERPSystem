@@ -27,12 +27,11 @@
 				<TextBlock Text="For Emplyees" HorizontalAlignment="Center" Margin="10"/>
 				
 				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-					
-					<Button Content="Emplyees" Command="" Margin="0,0,10,0"/>
-					<Button Content="Admin/Moderator" Command=""/>
-				
+					<Button Content="Emplyees" Command="{Binding EmployeeLoginCommand}" Margin="0,0,10,0"/>
+					<Button Content="Admin/Moderator" Command="{Binding AdminLoginCommand}"/>
 				</StackPanel>
 			</StackPanel>
 		</Border>
 	</StackPanel>
+	
 </UserControl>

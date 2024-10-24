@@ -1,4 +1,5 @@
 ﻿using AvaloniaMVVMERPSystem.DataBase;
+using AvaloniaMVVMERPSystem.Models;
 using ReactiveUI;
 using System;
 
@@ -16,7 +17,7 @@ namespace AvaloniaMVVMERPSystem.ViewModels
 
         public MainWindowViewModel()
         {
-            CurrentViewModel = new LoginViewModel(this, new Database());
+            CurrentViewModel = new LoginViewModel(this, new Database(),new ModelCommands());
         }
 
         public void SwitchViewModel(ViewModelBase viewModel)

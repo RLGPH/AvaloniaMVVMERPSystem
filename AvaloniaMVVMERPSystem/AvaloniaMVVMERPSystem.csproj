@@ -11,7 +11,6 @@
 	<ItemGroup>
 		<Folder Include="Classes\Location\" />
 		<Folder Include="Classes\StorageItem\" />
-		<Folder Include="Classes\User\" />
 		<Folder Include="DataBase\AddUserOrEmplyee\User\" />
 		<Folder Include="DataBase\AddUserOrEmplyee\Admin\" />
 		<Folder Include="DataBase\AddUserOrEmplyee\NormalEmplyee\" />
@@ -19,12 +18,11 @@
 		<Folder Include="DataBase\InventoryAndLocations\Inventory\" />
 		<Folder Include="DataBase\InventoryAndLocations\CountryAndBranches\" />
 		<Folder Include="DataBase\InventoryAndLocations\Items\" />
-		<Folder Include="Models\" />
-		<Folder Include="ViewModels\AdminModViewModels\" />
-		<Folder Include="ViewModels\EmployeeViewModels\" />
+		<Folder Include="Models\EmployeeCommands\" />
+		<Folder Include="Models\AdminCommands\" />
+		<Folder Include="Models\Methods for logic\" />
+		<Folder Include="Models\UserCommands\" />
 		<Folder Include="ViewModels\UserViewModels\" />
-		<Folder Include="Views\EmployeeViews\" />
-		<Folder Include="Views\AdminModViews\" />
 		<Folder Include="Views\UserViews\" />
 	</ItemGroup>
 
@@ -37,9 +35,5 @@
 		<PackageReference Include="Avalonia.ReactiveUI" Version="11.1.4" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
 		<PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Page Include="Views\LoginView.axaml" />
 	</ItemGroup>
 </Project>
