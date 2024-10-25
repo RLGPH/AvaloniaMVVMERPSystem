@@ -6,9 +6,36 @@
              x:Class="AvaloniaMVVMERPSystem.Views.UserMainMenuView"
 			 xmlns:views="using:AvaloniaMVVMERPSystem.ViewModels"
 			 x:DataType="views:UserMainMenuViewModel">
-	<StackPanel>
-		<TextBlock HorizontalAlignment="Center" Text="Welcome" FontSize="20" Margin="20"/>
-		<TextBlock HorizontalAlignment="Center" Text="Tom holland"/>
-		
-	</StackPanel>
+	<Grid ShowGridLines="True">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+
+
+		<StackPanel HorizontalAlignment="Center" Grid.ColumnSpan="2">
+			<TextBlock Text="Welcome" FontSize="20" Margin="20" HorizontalAlignment="Center"/>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+				<TextBlock Text="'{FirstName}'"/>
+				<TextBlock Text="'{LastName}'"/>
+			</StackPanel>
+		</StackPanel>
+		<StackPanel Grid.RowSpan="2" VerticalAlignment="Center" Margin="20">
+			<TextBlock Text="Newest itmes"/>
+			<ListBox Width="200" Height="300" HorizontalAlignment="Left">
+			
+			</ListBox>
+		</StackPanel>
+		<StackPanel Grid.Column="2" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="20">
+			<Button Content="Edit Account" Margin="10"/>
+			<Button Content="Order History" Margin="10"/>
+			<Button Content="+Order" Background="Green" Margin="10"/>
+			<Button Content="Logout" Background="Red" Margin="10"/>
+		</StackPanel>
+	</Grid>
 </UserControl>
