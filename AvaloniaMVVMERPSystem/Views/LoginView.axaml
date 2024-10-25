@@ -20,7 +20,7 @@
 				<StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="20">
 				
 					<Button Content="Login" Command="" Margin="0,0,10,0"/>
-					<Button Content="Regristor account" Command=""/>
+					<Button Content="Regristor account" Command="{Binding RegristorOpenCommand}"/>
 				
 				</StackPanel>
 				

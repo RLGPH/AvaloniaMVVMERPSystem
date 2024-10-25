@@ -13,6 +13,7 @@ namespace AvaloniaMVVMERPSystem.ViewModels
 
         public ReactiveCommand<Unit, Unit> EmployeeLoginCommand { get; }
         public ReactiveCommand<Unit, Unit> AdminLoginCommand { get; }
+        public ReactiveCommand<Unit, Unit> RegristorOpenCommand { get; }
 
         public LoginViewModel(MainWindowViewModel mainWindowViewModel, Database database, ModelCommands modCommands)
         {
@@ -22,7 +23,8 @@ namespace AvaloniaMVVMERPSystem.ViewModels
 
             // Initialize the command
             EmployeeLoginCommand = ReactiveCommand.Create(() => modCommands.SwitchToEmployeeLogin(database, mainWindowViewModel, modCommands));
-            AdminLoginCommand = ReactiveCommand.Create(() => modCommands.SwitchToAdminLogin(database, mainWindowViewModel, modCommands));   
+            AdminLoginCommand = ReactiveCommand.Create(() => modCommands.SwitchToAdminLogin(database, mainWindowViewModel, modCommands));
+            RegristorOpenCommand = ReactiveCommand.Create(() => modCommands.SwitchToRegristor(database, mainWindowViewModel, modCommands));
         }
     }
 }

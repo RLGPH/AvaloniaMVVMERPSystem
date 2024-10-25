@@ -21,9 +21,6 @@
 		<Folder Include="Models\EmployeeCommands\" />
 		<Folder Include="Models\AdminCommands\" />
 		<Folder Include="Models\Methods for logic\" />
-		<Folder Include="Models\UserCommands\" />
-		<Folder Include="ViewModels\UserViewModels\" />
-		<Folder Include="Views\UserViews\" />
 	</ItemGroup>
 
 	<ItemGroup>
