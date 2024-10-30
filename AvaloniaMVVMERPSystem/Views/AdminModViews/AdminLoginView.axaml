@@ -12,30 +12,35 @@
 			<StackPanel Margin="10" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center">
 				<TextBlock FontSize="17" Text="Admin Login" Margin="10"/>
 
-				<TextBlock Text="Username"/>
-				<TextBox Margin="5"/>
+				<!-- First Name -->
+				<TextBlock Text="First Name"/>
+				<TextBox Margin="5" Text="{Binding FirstName, Mode=TwoWay}"/>
 
+				<!-- Last Name -->
+				<TextBlock Text="Last Name"/>
+				<TextBox Margin="5" Text="{Binding LastName, Mode=TwoWay}"/>
+
+				<!-- Employee Password -->
 				<TextBlock Text="Password"/>
-				<TextBox Margin="5"/>
-				
-				<TextBlock Text="AdminPassword"/>
-				<TextBox Margin="5"/>
+				<TextBox Margin="5" Text="{Binding EmployeePassword, Mode=TwoWay}"/>
 
-				<TextBlock Text="EmplyeeId"/>
-				<TextBox Margin="5"/>
+				<!-- Admin Password -->
+				<TextBlock Text="Admin Password"/>
+				<TextBox Margin="5" Text="{Binding AdminPassword, Mode=TwoWay}"/>
 
+				<!-- Employee ID -->
+				<TextBlock Text="Employee ID"/>
+				<TextBox Margin="5" Text="{Binding EmployeeId, Mode=TwoWay}"/>
+
+				<!-- Role Selection -->
 				<StackPanel Orientation="Vertical">
-					<TextBlock Text="Login in as" />
-
-					<RadioButton Content="Admin View" GroupName="LoginViews" />
-					<RadioButton Content="Mod View" GroupName="LoginViews" />
-					<RadioButton Content="Emplyee View" GroupName="LoginViews" />
+					<TextBlock Text="Login in as"/>
+					<CheckBox Content="IsAdmin/Mod" IsChecked="{Binding IsAdminOrMod}"/>
 				</StackPanel>
 
-
-				<TextBlock Text="Login/cancel"/>
+				<!-- Login Button -->
 				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-					<Button Content="Login" Margin="0,0,20,0"/>
+					<Button Content="Login" Command="{Binding LoginCommand}" Margin="0,0,20,0"/>
 					<Button Content="Cancel" Command="{Binding BackToNormlogin}"/>
 				</StackPanel>
 			</StackPanel>

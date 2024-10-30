@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AvaloniaMVVMERPSystem.Classes.User
+namespace AvaloniaMVVMERPSystem.Classes
 {
     public class Employee : Person
     {
@@ -13,10 +13,12 @@ namespace AvaloniaMVVMERPSystem.Classes.User
         public string Title { get; set; }
         public string WorkMail { get; set; }
         public string WorkTlf { get; set; }
-        public string AdminPassword { get; set; }
+        public string? AdminPassword { get; set; }
+        public Admin _admin { get; set; }
+        public Moderator _moderator { get; set; }
 
         public Employee(int employeeId, string emplyeePassword, string title, string workMail, string workTlf
-            ,string adminPassword,int personId, string firstName, string lastName, string cprNumber, PersonaLInfo pInfo) :
+            ,string adminPassword,int personId, string firstName, string lastName, string cprNumber, PersonaLInfo pInfo, Admin admin, Moderator moderator) :
             base(personId, firstName, lastName, cprNumber, pInfo) 
         {
             EmployeeId = employeeId;
@@ -25,6 +27,8 @@ namespace AvaloniaMVVMERPSystem.Classes.User
             WorkMail = workMail;
             WorkTlf = workTlf;
             AdminPassword = adminPassword;
+            _admin = admin;
+            _moderator = moderator;
         }
     }
 }

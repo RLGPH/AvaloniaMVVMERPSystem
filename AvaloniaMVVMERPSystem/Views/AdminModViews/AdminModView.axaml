@@ -1,0 +1,53 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaMVVMERPSystem.Views.AdminModView"
+			 xmlns:views="using:AvaloniaMVVMERPSystem.ViewModels"
+			 x:DataType="views:AdminModViewModel">
+
+
+	<Grid ShowGridLines="True">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+
+
+		<StackPanel HorizontalAlignment="Center" Grid.ColumnSpan="2">
+			<TextBlock Text="Welcome" FontSize="20" Margin="20" HorizontalAlignment="Center"/>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+				<TextBlock Text="{Binding FirstName}" Margin="4"/>
+				<TextBlock Text="{Binding LastName}" Margin="4"/>
+			</StackPanel>
+		</StackPanel>
+		<StackPanel Grid.RowSpan="2" VerticalAlignment="Center" Margin="20">
+			<TextBlock Text="Newest itmes"/>
+			<ListBox Width="200" Height="300" HorizontalAlignment="Left">
+
+			</ListBox>
+		</StackPanel>
+		<StackPanel Grid.Column="2" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="20" Orientation="Horizontal">
+
+			<StackPanel>
+				<Button Content="Add Employee" Margin="10" Width="180" Command="{Binding AddEmployee}"/>
+				<Button Content="Edit Account" Margin="10" Width="180"/>
+				<Button Content="Edit Users" Margin="10" Width="180"/>
+				<Button Content="Added Inventory History" Margin="10" Width="180"/>
+			</StackPanel>
+
+			<StackPanel>
+				<Button Content="Edit Employee" Margin="10" Width="120"/>
+				<Button Content="Edit inventory" Margin="10" Width="120"/>
+				<Button Content="+Add Inventory" Background="Green" Margin="10" Width="120"/>
+				<Button Content="Logout" Background="Red" Margin="10" Width="120" Command="{Binding BackToNormlogin}"/>
+			</StackPanel>
+		</StackPanel>
+	</Grid>
+</UserControl>

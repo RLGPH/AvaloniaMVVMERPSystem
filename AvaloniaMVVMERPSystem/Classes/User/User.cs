@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AvaloniaMVVMERPSystem.Classes.User
+namespace AvaloniaMVVMERPSystem.Classes
 {
     public class User : Person
     {

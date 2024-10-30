@@ -1,4 +1,5 @@
-﻿using AvaloniaMVVMERPSystem.DataBase;
+﻿using AvaloniaMVVMERPSystem.Classes;
+using AvaloniaMVVMERPSystem.DataBase;
 using AvaloniaMVVMERPSystem.ViewModels;
 
 
@@ -21,9 +22,9 @@ namespace AvaloniaMVVMERPSystem.Models
             _MainWindowViewModel.SwitchViewModel(new AdminLoginViewModel(_MainWindowViewModel, _Database, modelCommands));
         }
 
-        public void LoginAsAdmin()
+        public void LoginAsAdmin(Database _Database, MainWindowViewModel _MainWindowViewModel, ModelCommands modelCommands, Employee employee)
         {
-
+            _MainWindowViewModel.SwitchViewModel(new AdminModViewModel(_MainWindowViewModel, _Database, modelCommands, employee));
         }
     }
 }

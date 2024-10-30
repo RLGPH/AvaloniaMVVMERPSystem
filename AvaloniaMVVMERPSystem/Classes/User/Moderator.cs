@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AvaloniaMVVMERPSystem.Classes.User
+namespace AvaloniaMVVMERPSystem.Classes
 {
-    public class Moderator : Employee
+    public class Moderator
     {
-        public int ModeratorId { get; set; }
-        public bool IsMod { get; set; }
-        public Moderator(int modId, bool isMod,int employeeId, string emplyeePassword, string title, string workMail, string workTlf
-            ,string adminPassword,int personId, string firstName, string lastName, string cprNumber, PersonaLInfo pInfo) :
-            base(employeeId,emplyeePassword,title,workMail,workTlf,adminPassword,personId, firstName, lastName, cprNumber, pInfo) 
+        public int ModeratorId { get; set; } = 0;
+        public bool IsMod { get; set; } = false;
+        public Moderator(int modId, bool isMod)
         {
             ModeratorId = modId;
             IsMod = isMod;

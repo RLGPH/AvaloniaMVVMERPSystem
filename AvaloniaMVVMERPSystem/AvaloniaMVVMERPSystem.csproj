@@ -13,13 +13,11 @@
 		<Folder Include="Classes\StorageItem\" />
 		<Folder Include="DataBase\AddUserOrEmplyee\User\" />
 		<Folder Include="DataBase\AddUserOrEmplyee\Admin\" />
-		<Folder Include="DataBase\AddUserOrEmplyee\NormalEmplyee\" />
-		<Folder Include="DataBase\AddUserOrEmplyee\ModeratorEmployee\" />
+		<Folder Include="DataBase\AddUserOrEmplyee\Moderator\" />
 		<Folder Include="DataBase\InventoryAndLocations\Inventory\" />
 		<Folder Include="DataBase\InventoryAndLocations\CountryAndBranches\" />
 		<Folder Include="DataBase\InventoryAndLocations\Items\" />
 		<Folder Include="Models\EmployeeCommands\" />
-		<Folder Include="Models\AdminCommands\" />
 		<Folder Include="Models\Methods for logic\" />
 	</ItemGroup>
 
@@ -33,4 +31,6 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
 		<PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
 	</ItemGroup>
+
+	
 </Project>

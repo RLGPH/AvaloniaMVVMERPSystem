@@ -7,14 +7,14 @@ using System.Data.SqlClient;
 
 namespace AvaloniaMVVMERPSystem.DataBase
 {
-    public class Database
+    public partial class Database
     {
         private static SqlConnection GetConnection()
         {
             SqlConnectionStringBuilder sb = new SqlConnectionStringBuilder
             {
                 DataSource = "localhost",
-                InitialCatalog = "AutoAuctionDB",
+                InitialCatalog = "PhoenixEnterpriseDB",
                 UserID = "AddsUsers_User",
                 Password = "Password123!"
             };
