@@ -44,7 +44,7 @@ namespace AvaloniaMVVMERPSystem.ViewModels
             FirstName = employee.FirstName;
             LastName = employee.LastName;
 
-            AddEmployee = ReactiveCommand.Create(() => modCommands)
+            AddEmployee = ReactiveCommand.Create(() => modCommands.AddEmployeeView(database,mainWindowViewModel,modCommands,employee));
 
             BackToNormlogin = ReactiveCommand.Create(() => modCommands.SwitchToNormLogin(database, mainWindowViewModel, modCommands));
         }

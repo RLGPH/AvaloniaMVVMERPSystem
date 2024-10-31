@@ -8,9 +8,9 @@ namespace AvaloniaMVVMERPSystem.DataBase
     public partial class Database
     {
         // CreateEmployee method to add a new employee
-        public int CreateEmployee(Employee employee)
+        public void CreateEmployee(Employee employee)
         {
-            using (SqlConnection conn = GetConnection()) // Call the static GetConnection method
+            using (SqlConnection conn = GetConnection())
             {
                 using (SqlCommand cmd = new SqlCommand("CreateEmployee", conn))
                 {
@@ -36,18 +36,24 @@ namespace AvaloniaMVVMERPSystem.DataBase
                     cmd.Parameters.AddWithValue("@IsAdmin", employee._admin.IsAdmin);
                     cmd.Parameters.AddWithValue("@IsMod", employee._moderator.IsMod);
 
-                    // Output parameter to get the created EmployeeId
-                    SqlParameter outputIdParam = new SqlParameter("@EmployeeId", SqlDbType.Int)
-                    {
-                        Direction = ParameterDirection.Output
-                    };
-                    cmd.Parameters.Add(outputIdParam);
-
                     conn.Open();
                     cmd.ExecuteNonQuery();
 
-                    return (int)outputIdParam.Value; // Return the EmployeeId
+                    CreateSqlUser(conn, employee.EmployeePassword,employee.FirstName + employee.LastName);
                 }
+            }
+        }
+        private void CreateSqlUser(SqlConnection conn, string password, string loginName)
+        {
+            using (SqlCommand cmd = new SqlCommand("CreateAUser", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                // Add parameters for login name and password
+                cmd.Parameters.AddWithValue("@LoginName", loginName);
+                cmd.Parameters.AddWithValue("@Password", password);
+
+                cmd.ExecuteNonQuery();
             }
         }
 
