@@ -28,7 +28,7 @@ namespace AvaloniaMVVMERPSystem.DataBase
                     cmd.Parameters.AddWithValue("@HouseNumber", employee.PInfo.HouseNumber);
                     cmd.Parameters.AddWithValue("@City", employee.PInfo.City);
                     cmd.Parameters.AddWithValue("@Country", employee.PInfo.Country);
-                    cmd.Parameters.AddWithValue("@EmployeePassword", employee.EmployeePassword);
+                    cmd.Parameters.AddWithValue("@EmployeePassword", employee.EmployeePassword); // Corrected line
                     cmd.Parameters.AddWithValue("@Title", employee.Title);
                     cmd.Parameters.AddWithValue("@WorkMail", employee.WorkMail);
                     cmd.Parameters.AddWithValue("@WorkTlf", employee.WorkTlf);
@@ -39,10 +39,12 @@ namespace AvaloniaMVVMERPSystem.DataBase
                     conn.Open();
                     cmd.ExecuteNonQuery();
 
-                    CreateSqlUser(conn, employee.EmployeePassword,employee.FirstName + employee.LastName);
+                    CreateSqlUser(conn, employee.EmployeePassword, employee.FirstName + employee.LastName);
                 }
             }
         }
+
+
         private void CreateSqlUser(SqlConnection conn, string password, string loginName)
         {
             using (SqlCommand cmd = new SqlCommand("CreateAUser", conn))
@@ -71,7 +73,7 @@ namespace AvaloniaMVVMERPSystem.DataBase
                     {
                         if (reader.Read())
                         {
-                            // Creating PersonaLInfo instance
+                            // Creating PersonInfo instance
                             var personalInfo = new PersonaLInfo(
                                 personalInfoId: reader.GetInt32(reader.GetOrdinal("PAddressId")),
                                 mail: reader.GetString(reader.GetOrdinal("Mail")),
@@ -84,16 +86,16 @@ namespace AvaloniaMVVMERPSystem.DataBase
                                 country: reader.GetString(reader.GetOrdinal("Country"))
                             );
 
-                            // Creating Admin instance
-                            var admin = new Admin(
-                                adminId: reader.GetInt32(reader.GetOrdinal("AdminId")),
-                                isAdmin: reader.GetBoolean(reader.GetOrdinal("IsAdmin"))
+                            // Creating Admin instance with default values if not found
+                            Admin admin = new Admin(
+                                adminId: reader.IsDBNull(reader.GetOrdinal("AdminId")) ? 0 : reader.GetInt32(reader.GetOrdinal("AdminId")),
+                                isAdmin: reader.IsDBNull(reader.GetOrdinal("IsAdmin")) ? false : reader.GetBoolean(reader.GetOrdinal("IsAdmin"))
                             );
 
-                            // Creating Moderator instance
-                            var moderator = new Moderator(
-                                modId: reader.GetInt32(reader.GetOrdinal("ModeratorId")),
-                                isMod: reader.GetBoolean(reader.GetOrdinal("IsMod"))
+                            // Creating Moderator instance with default values if not found
+                            Moderator moderator = new Moderator(
+                                modId: reader.IsDBNull(reader.GetOrdinal("ModeratorId")) ? 0 : reader.GetInt32(reader.GetOrdinal("ModeratorId")),
+                                isMod: reader.IsDBNull(reader.GetOrdinal("IsMod")) ? false : reader.GetBoolean(reader.GetOrdinal("IsMod"))
                             );
 
                             // Creating and returning the Employee object
@@ -103,7 +105,7 @@ namespace AvaloniaMVVMERPSystem.DataBase
                                 title: reader.GetString(reader.GetOrdinal("Title")),
                                 workMail: reader.GetString(reader.GetOrdinal("WorkMail")),
                                 workTlf: reader.GetString(reader.GetOrdinal("WorkTlf")),
-                                adminPassword: reader.GetString(reader.GetOrdinal("AdminPassword")), // No null check needed if DB always provides a value
+                                adminPassword: reader.IsDBNull(reader.GetOrdinal("AdminPassword")) ? null : reader.GetString(reader.GetOrdinal("AdminPassword")), // Null check for admin password
                                 personId: reader.GetInt32(reader.GetOrdinal("PersonId")),
                                 firstName: reader.GetString(reader.GetOrdinal("FirstName")),
                                 lastName: reader.GetString(reader.GetOrdinal("LastName")),
@@ -121,6 +123,7 @@ namespace AvaloniaMVVMERPSystem.DataBase
                 }
             }
         }
+
 
     }
 }

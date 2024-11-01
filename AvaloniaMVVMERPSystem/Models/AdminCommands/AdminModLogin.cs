@@ -16,10 +16,8 @@ namespace AvaloniaMVVMERPSystem.Models
 
             Employee GetEmployee = database.GetEmployee(Id);
 
-            GetEmployee.EmployeePassword = PasswordHasher.HashPassword(GetEmployee.EmployeePassword);
             if (GetEmployee.AdminPassword != null)
             {
-                GetEmployee.AdminPassword = PasswordHasher.HashPassword(GetEmployee.AdminPassword);
 
                 if (PasswordHasher.VerifyPassword(password, GetEmployee.EmployeePassword) && PasswordHasher.VerifyPassword(password, GetEmployee.EmployeePassword))
                 {
