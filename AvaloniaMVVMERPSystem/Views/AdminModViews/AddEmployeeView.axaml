@@ -24,7 +24,7 @@
 		<StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
 			<TextBlock Text="Check if User or data exist"/>
 			<Button Content="Check" Margin="4" Width="114"/>
-			<Button Content="Add Employee" Command="{Binding AddEmployee}" HorizontalAlignment="Center" Margin="10"/>
+			<Button Content="Add Employee" Command="{Binding AddEmployee}" Margin="4"/>
 			<Button Content="Cancel" Width="114" Margin="4"/>
 		</StackPanel>
 

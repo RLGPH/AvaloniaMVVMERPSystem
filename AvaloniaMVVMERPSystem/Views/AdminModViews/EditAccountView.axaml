@@ -1,0 +1,146 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaMVVMERPSystem.Views.EditAccountView"
+			 xmlns:views="using:AvaloniaMVVMERPSystem.ViewModels"
+			 x:DataType="views:EditAccountViewModel">
+	
+	
+	<Grid ShowGridLines="True">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		
+		<StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+			<TextBlock Text="Check if User or data exist"/>
+			<Button Content="Check" Margin="4" Width="114"/>
+			<Button Content="Edit Employee" Command="{Binding EditEmployee}" Margin="4"/>
+			<Button Content="Cancel" Width="114" Margin="4"/>
+		</StackPanel>
+		
+	<StackPanel Grid.Column="1" Grid.RowSpan="2" Margin="30">
+		<Border BorderBrush="Gray" BorderThickness="4" CornerRadius="10" MinWidth="350">
+			<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="400">
+				<WrapPanel>
+					<!-- Name Fields -->
+					<StackPanel Margin="5">
+						<TextBlock Text="First name" Margin="4"/>
+						<TextBox Text="{Binding FirstName}" Margin="4" Width="150"/>
+					</StackPanel>
+					<StackPanel Margin="5">
+						<TextBlock Text="Last name" Margin="4"/>
+						<TextBox Text="{Binding LastName}" Margin="4" Width="150"/>
+					</StackPanel>
+
+					<!-- Password Fields -->
+					<StackPanel Margin="5">
+						<TextBlock Text="Password" Margin="4"/>
+						<TextBox Text="{Binding Password}" Watermark="e.g., Pass1234" Width="200" Margin="4"/>
+						<TextBlock Text="Re-enter password" Margin="4"/>
+						<TextBox Text="{Binding ReenterPassword}" Watermark="e.g., Pass1234" Width="200" Margin="4"/>
+					</StackPanel>
+
+					<!-- CPR Number -->
+					<StackPanel Margin="5">
+						<TextBlock Text="CPR Number" Margin="4"/>
+						<TextBox Text="{Binding CPRNumber}" Watermark="121212-1212" Margin="4"/>
+					</StackPanel>
+
+					<!-- Postal Code -->
+					<StackPanel Margin="5">
+						<TextBlock Text="Postal Code" Margin="4"/>
+						<TextBox Text="{Binding PostalCode}" Watermark="9300" Margin="4"/>
+					</StackPanel>
+
+					<!-- Address -->
+					<StackPanel Margin="4">
+						<TextBlock Text="Address" Margin="4"/>
+						<TextBox Text="{Binding Address}" Width="170" Margin="4"/>
+					</StackPanel>
+
+					<!-- Road Name -->
+					<StackPanel Margin="5">
+						<TextBlock Text="Road Name" Margin="4"/>
+						<TextBox Text="{Binding RoadName}" Width="200" Margin="4"/>
+					</StackPanel>
+
+					<!-- House Number -->
+					<StackPanel Margin="5">
+						<TextBlock Text="House Number" Margin="4"/>
+						<TextBox Text="{Binding HouseNumber}" Margin="4"/>
+					</StackPanel>
+
+					<!-- City -->
+					<StackPanel Margin="5">
+						<TextBlock Text="City" Margin="4"/>
+						<TextBox Text="{Binding City}" Width="150" Margin="4"/>
+					</StackPanel>
+
+					<!-- Country -->
+					<StackPanel Margin="5">
+						<TextBlock Text="Country" Margin="4"/>
+						<TextBox Text="{Binding Country}" Width="150" Margin="4"/>
+					</StackPanel>
+
+					<!-- Personal Mail -->
+					<StackPanel Margin="5">
+						<TextBlock Text="Personal Mail" Margin="4"/>
+						<TextBox Text="{Binding PersonalMail}" Watermark="e.g., '{Mail}@hotmail.com'" Margin="4" Width="200"/>
+					</StackPanel>
+
+					<!-- Personal Phone -->
+					<StackPanel Margin="5">
+						<TextBlock Text="Personal Phone" Margin="4"/>
+						<StackPanel Orientation="Horizontal" Margin="4">
+							<ComboBox Margin="0,0,10,0" SelectedItem="{Binding PersonalPhoneCountryCode}" ItemsSource="{Binding CountryCodes}"/>
+							<TextBox Text="{Binding PersonalPhone}" Watermark="12345678" Width="125"/>
+						</StackPanel>
+					</StackPanel>
+
+					<!-- Work Mail -->
+					<StackPanel Margin="5">
+						<TextBlock Text="Work Mail" Margin="4"/>
+						<TextBox Text="{Binding WorkMail}" Watermark="e.g., '{Mail}@hotmail.com'" Margin="4" Width="200"/>
+					</StackPanel>
+
+					<!-- Work Phone -->
+					<StackPanel Margin="5">
+						<TextBlock Text="Work Phone" Margin="4"/>
+						<StackPanel Orientation="Horizontal" Margin="4">
+							<ComboBox Margin="0,0,10,0" SelectedItem="{Binding WorkPhoneCountryCode}" ItemsSource="{Binding CountryCodes}"/>
+							<TextBox Text="{Binding WorkPhone}" Watermark="12345678" Width="125"/>
+						</StackPanel>
+					</StackPanel>
+
+					<!-- Title -->
+					<StackPanel Margin="5">
+						<TextBlock Text="Title" Margin="4"/>
+						<TextBox Text="{Binding Title}" Width="200" Margin="4"/>
+					</StackPanel>
+
+					<!-- Admin/Mod Section -->
+					<StackPanel Width="200" Margin="5">
+						<CheckBox Content="IsAdmin" IsChecked="{Binding IsAdmin}" Margin="4"/>
+						<CheckBox Content="IsMod" IsChecked="{Binding IsMod}" Margin="4"/>
+					</StackPanel>
+
+					<!-- Admin Password -->
+					<StackPanel Margin="5">
+						<TextBlock Text="Extra Password" Margin="4"/>
+						<TextBox Text="{Binding AdminPassword}" Watermark="e.g., AdminPass123!" Width="200" Margin="4"/>
+						<TextBlock Text="Re-enter Extra Password" Margin="4"/>
+						<TextBox Text="{Binding ReenterAdminPassword}" Watermark="e.g., AdminPass123!" Width="200" Margin="4"/>
+					</StackPanel>
+				</WrapPanel>
+			</ScrollViewer>
+		</Border>
+	</StackPanel>
+	</Grid>
+</UserControl>
