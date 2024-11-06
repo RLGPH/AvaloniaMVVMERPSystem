@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace AvaloniaMVVMERPSystem.DataBase
 {
@@ -21,6 +22,19 @@ namespace AvaloniaMVVMERPSystem.DataBase
 
             SqlConnection connection = new SqlConnection(sb.ToString());
             return connection;
+        }
+        private void CreateSqlUser(SqlConnection conn, string password, string loginName)
+        {
+            using (SqlCommand cmd = new SqlCommand("CreateAUser", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                // Add parameters for login name and password
+                cmd.Parameters.AddWithValue("@LoginName", loginName);
+                cmd.Parameters.AddWithValue("@Password", password);
+
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }

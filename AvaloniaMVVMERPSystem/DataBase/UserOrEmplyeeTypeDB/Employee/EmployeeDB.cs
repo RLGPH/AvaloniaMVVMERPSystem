@@ -7,7 +7,6 @@ namespace AvaloniaMVVMERPSystem.DataBase
 {
     public partial class Database
     {
-        // CreateEmployee method to add a new employee
         public void CreateEmployee(Employee employee)
         {
             using (SqlConnection conn = GetConnection())
@@ -28,7 +27,7 @@ namespace AvaloniaMVVMERPSystem.DataBase
                     cmd.Parameters.AddWithValue("@HouseNumber", employee.PInfo.HouseNumber);
                     cmd.Parameters.AddWithValue("@City", employee.PInfo.City);
                     cmd.Parameters.AddWithValue("@Country", employee.PInfo.Country);
-                    cmd.Parameters.AddWithValue("@EmployeePassword", employee.EmployeePassword); // Corrected line
+                    cmd.Parameters.AddWithValue("@EmployeePassword", employee.EmployeePassword); 
                     cmd.Parameters.AddWithValue("@Title", employee.Title);
                     cmd.Parameters.AddWithValue("@WorkMail", employee.WorkMail);
                     cmd.Parameters.AddWithValue("@WorkTlf", employee.WorkTlf);
@@ -41,21 +40,6 @@ namespace AvaloniaMVVMERPSystem.DataBase
 
                     CreateSqlUser(conn, employee.EmployeePassword, employee.FirstName + employee.LastName);
                 }
-            }
-        }
-
-
-        private void CreateSqlUser(SqlConnection conn, string password, string loginName)
-        {
-            using (SqlCommand cmd = new SqlCommand("CreateAUser", conn))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                // Add parameters for login name and password
-                cmd.Parameters.AddWithValue("@LoginName", loginName);
-                cmd.Parameters.AddWithValue("@Password", password);
-
-                cmd.ExecuteNonQuery();
             }
         }
 
@@ -124,6 +108,45 @@ namespace AvaloniaMVVMERPSystem.DataBase
             }
         }
 
+        public Employee EditEmployee(Employee ChangedEmployee, Employee OriginalEmployee)
+        {
+            using (SqlConnection conn = GetConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("EditEmployee", conn))
+                {
+                    if (ChangedEmployee != OriginalEmployee && ChangedEmployee.EmployeeId == OriginalEmployee.EmployeeId)
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
 
+                        cmd.Parameters.AddWithValue("@EmployeeId", OriginalEmployee.EmployeeId);
+                        cmd.Parameters.AddWithValue("@FirstName", ChangedEmployee.FirstName);
+                        cmd.Parameters.AddWithValue("@LastName", ChangedEmployee.LastName);
+                        cmd.Parameters.AddWithValue("@Mail", ChangedEmployee.PInfo.Mail);
+                        cmd.Parameters.AddWithValue("@Tlf", ChangedEmployee.PInfo.Tlf);
+                        cmd.Parameters.AddWithValue("@CPRNumber", ChangedEmployee.CPRNumber);
+                        cmd.Parameters.AddWithValue("@Address", ChangedEmployee.PInfo.Address);
+                        cmd.Parameters.AddWithValue("@PostalCode", ChangedEmployee.PInfo.PostalCode);
+                        cmd.Parameters.AddWithValue("@RoadName", ChangedEmployee.PInfo.RoadName);
+                        cmd.Parameters.AddWithValue("@HouseNumber", ChangedEmployee.PInfo.HouseNumber);
+                        cmd.Parameters.AddWithValue("@City", ChangedEmployee.PInfo.City);
+                        cmd.Parameters.AddWithValue("@Country", ChangedEmployee.PInfo.Country);
+                        cmd.Parameters.AddWithValue("@EmployeePassword", ChangedEmployee.EmployeePassword);
+                        cmd.Parameters.AddWithValue("@Title", ChangedEmployee.Title);
+                        cmd.Parameters.AddWithValue("@WorkMail", ChangedEmployee.WorkMail);
+                        cmd.Parameters.AddWithValue("@WorkTlf", ChangedEmployee.WorkTlf);
+                        cmd.Parameters.AddWithValue("@AdminPassword", (object)ChangedEmployee.AdminPassword ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@IsAdmin", ChangedEmployee._admin.IsAdmin);
+                        cmd.Parameters.AddWithValue("@IsMod", ChangedEmployee._moderator.IsMod);
+
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                        return ChangedEmployee;
+                    }
+
+                    return OriginalEmployee;
+                }
+            }
+        }
     }
 }

@@ -11,9 +11,9 @@
 	<ItemGroup>
 		<Folder Include="Classes\Location\" />
 		<Folder Include="Classes\StorageItem\" />
-		<Folder Include="DataBase\AddUserOrEmplyee\User\" />
-		<Folder Include="DataBase\AddUserOrEmplyee\Admin\" />
-		<Folder Include="DataBase\AddUserOrEmplyee\Moderator\" />
+		<Folder Include="DataBase\UserOrEmplyeeTypeDB\User\" />
+		<Folder Include="DataBase\UserOrEmplyeeTypeDB\Admin\" />
+		<Folder Include="DataBase\UserOrEmplyeeTypeDB\Moderator\" />
 		<Folder Include="DataBase\InventoryAndLocations\Inventory\" />
 		<Folder Include="DataBase\InventoryAndLocations\CountryAndBranches\" />
 		<Folder Include="DataBase\InventoryAndLocations\Items\" />

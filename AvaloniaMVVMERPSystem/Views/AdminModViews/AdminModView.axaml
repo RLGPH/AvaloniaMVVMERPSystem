@@ -37,7 +37,7 @@
 
 			<StackPanel>
 				<Button Content="Add Employee" Margin="10" Width="180" Command="{Binding AddEmployee}"/>
-				<Button Content="Edit Account" Margin="10" Width="180"/>
+				<Button Content="Edit Account" Margin="10" Width="180" Command="{Binding EditAccount}"/>
 				<Button Content="Edit Users" Margin="10" Width="180"/>
 				<Button Content="Added Inventory History" Margin="10" Width="180"/>
 			</StackPanel>

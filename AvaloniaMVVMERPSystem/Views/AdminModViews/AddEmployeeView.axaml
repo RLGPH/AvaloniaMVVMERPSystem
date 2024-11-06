@@ -25,7 +25,7 @@
 			<TextBlock Text="Check if User or data exist"/>
 			<Button Content="Check" Margin="4" Width="114"/>
 			<Button Content="Add Employee" Command="{Binding AddEmployee}" Margin="4"/>
-			<Button Content="Cancel" Width="114" Margin="4"/>
+			<Button Content="Cancel" Width="114" Margin="4" Command="{Binding BackToMenu}"/>
 		</StackPanel>
 
 		<StackPanel Grid.Column="1" Grid.RowSpan="2" Margin="30">
@@ -45,9 +45,12 @@
 						<!-- Password Fields -->
 						<StackPanel Margin="5">
 							<TextBlock Text="Password" Margin="4"/>
-							<TextBox Text="{Binding Password}" Watermark="e.g., Pass1234" Width="200" Margin="4"/>
+							<TextBox Text="{Binding Password, Mode=TwoWay}" Watermark="e.g., Pass1234" Width="200" Margin="4"/>
+
 							<TextBlock Text="Re-enter password" Margin="4"/>
-							<TextBox Text="{Binding ReenterPassword}" Watermark="e.g., Pass1234" Width="200" Margin="4"/>
+							<TextBox Text="{Binding ReenterPassword, Mode=TwoWay}" Watermark="e.g., Pass1234" Width="200" Margin="4"/>
+
+							<TextBlock Text="{Binding PasswordError}" Foreground="Red" Margin="4"/>
 						</StackPanel>
 
 						<!-- CPR Number -->
@@ -136,10 +139,13 @@
 
 						<!-- Admin Password -->
 						<StackPanel Margin="5">
-							<TextBlock Text="Extra Password" Margin="4"/>
-							<TextBox Text="{Binding AdminPassword}" Watermark="e.g., AdminPass123!" Width="200" Margin="4"/>
-							<TextBlock Text="Re-enter Extra Password" Margin="4"/>
-							<TextBox Text="{Binding ReenterAdminPassword}" Watermark="e.g., AdminPass123!" Width="200" Margin="4"/>
+							<TextBlock Text="Admin Password" Margin="4"/>
+							<TextBox Text="{Binding AdminPassword, Mode=TwoWay}" Watermark="Admin password" Width="200" Margin="4"/>
+
+							<TextBlock Text="Re-enter Admin Password" Margin="4"/>
+							<TextBox Text="{Binding ReenterAdminPassword, Mode=TwoWay}" Watermark="Re-enter Admin password" Width="200" Margin="4"/>
+
+							<TextBlock Text="{Binding AdminPasswordError}" Foreground="Red" Margin="4"/>
 						</StackPanel>
 					</WrapPanel>
 				</ScrollViewer>

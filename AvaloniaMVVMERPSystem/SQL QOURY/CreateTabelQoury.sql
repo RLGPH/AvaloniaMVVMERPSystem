@@ -31,7 +31,7 @@ CREATE TABLE PersonTB(
 
 CREATE TABLE UsersTB(
     UserId INT IDENTITY(1,1) PRIMARY KEY,
-    UPassWord VARCHAR(50) NOT NULL,
+    UPassWord VARCHAR(255) NOT NULL,
     Balance DECIMAL(18, 2),
     PersonId INT NOT NULL,
 

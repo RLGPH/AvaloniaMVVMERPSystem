@@ -32,6 +32,8 @@ namespace AvaloniaMVVMERPSystem.Models
             
             Employee NewEmployee = new(employeeId, emplyeePassword, title, workMail, workTlf, adminPassword, personId, firstName, lastName, cprNumber, info, admin, moderator);
             _Database.CreateEmployee(NewEmployee);
+
+            SwitchToAdminMenu(_Database,_MainWindowViewModel,modelCommands,employee);
         }
     }
 }

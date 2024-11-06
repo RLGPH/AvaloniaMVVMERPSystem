@@ -19,7 +19,7 @@ namespace AvaloniaMVVMERPSystem.Models
             if (GetEmployee.AdminPassword != null)
             {
 
-                if (PasswordHasher.VerifyPassword(password, GetEmployee.EmployeePassword) && PasswordHasher.VerifyPassword(password, GetEmployee.EmployeePassword))
+                if (PasswordHasher.VerifyPassword(password, GetEmployee.EmployeePassword) && PasswordHasher.VerifyPassword(password, GetEmployee.EmployeePassword) &&  FirstName == GetEmployee.FirstName && LastName == GetEmployee.LastName)
                 {
                     LoginAsAdmin(database, mainWindowViewModel, modCommands, GetEmployee);
                 }

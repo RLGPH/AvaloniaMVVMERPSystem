@@ -22,7 +22,7 @@
 			<TextBlock Text="Check if User or data exist"/>
 			<Button Content="Check" Margin="4" Width="114"/>
 			<Button Content="Edit Employee" Command="{Binding EditEmployee}" Margin="4"/>
-			<Button Content="Cancel" Width="114" Margin="4"/>
+			<Button Content="Cancel" Width="114" Margin="4" Command="{Binding BackToMenu}"/>
 		</StackPanel>
 		
 	<StackPanel Grid.Column="1" Grid.RowSpan="2" Margin="30">
@@ -50,7 +50,7 @@
 					<!-- CPR Number -->
 					<StackPanel Margin="5">
 						<TextBlock Text="CPR Number" Margin="4"/>
-						<TextBox Text="{Binding CPRNumber}" Watermark="121212-1212" Margin="4"/>
+						<TextBox Text="{Binding CPRNumber}" Watermark="121212-1212" Margin="4" IsEnabled="false"/>
 					</StackPanel>
 
 					<!-- Postal Code -->
@@ -99,7 +99,6 @@
 					<StackPanel Margin="5">
 						<TextBlock Text="Personal Phone" Margin="4"/>
 						<StackPanel Orientation="Horizontal" Margin="4">
-							<ComboBox Margin="0,0,10,0" SelectedItem="{Binding PersonalPhoneCountryCode}" ItemsSource="{Binding CountryCodes}"/>
 							<TextBox Text="{Binding PersonalPhone}" Watermark="12345678" Width="125"/>
 						</StackPanel>
 					</StackPanel>
@@ -114,7 +113,6 @@
 					<StackPanel Margin="5">
 						<TextBlock Text="Work Phone" Margin="4"/>
 						<StackPanel Orientation="Horizontal" Margin="4">
-							<ComboBox Margin="0,0,10,0" SelectedItem="{Binding WorkPhoneCountryCode}" ItemsSource="{Binding CountryCodes}"/>
 							<TextBox Text="{Binding WorkPhone}" Watermark="12345678" Width="125"/>
 						</StackPanel>
 					</StackPanel>
@@ -127,8 +125,8 @@
 
 					<!-- Admin/Mod Section -->
 					<StackPanel Width="200" Margin="5">
-						<CheckBox Content="IsAdmin" IsChecked="{Binding IsAdmin}" Margin="4"/>
-						<CheckBox Content="IsMod" IsChecked="{Binding IsMod}" Margin="4"/>
+						<CheckBox Content="IsAdmin" IsChecked="{Binding IsAdmin}" Margin="4" IsEnabled="False"/>
+						<CheckBox Content="IsMod" IsChecked="{Binding IsMod}" Margin="4" IsEnabled="False"/>
 					</StackPanel>
 
 					<!-- Admin Password -->
