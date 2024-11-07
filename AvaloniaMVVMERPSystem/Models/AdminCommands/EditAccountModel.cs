@@ -13,7 +13,7 @@ namespace AvaloniaMVVMERPSystem.Models
     {
         public void EditAccount(Employee changed , Employee employee, Database database, MainWindowViewModel mainWindowViewModel, ModelCommands modelCommands) 
         {
-            database.EditEmployee(changed, employee);
+            employee = database.EditEmployee(changed, employee);
 
             SwitchToAdminMenu(database, mainWindowViewModel, modelCommands, employee);
         }
