@@ -79,3 +79,85 @@ BEGIN
     WHERE p.FirstName = @FirstName AND p.LastName = @LastName;
 END;
 ;
+
+GO
+CREATE PROCEDURE [dbo].[GetEmployee]
+    @EmployeeId INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        e.EmplyeeId AS EmployeeId, 
+        e.EmplyeePassword AS EmployeePassword, 
+        e.Tital AS Title, 
+        e.WorkMail, 
+        e.WorkTlf, 
+        e.AdminPassword,
+        p.PersonId, 
+        p.FirstName, 
+        p.LastName,
+        pi.PAddressId, 
+        pi.Mail, 
+        pi.Tlf, 
+        pi.CPRNumber, 
+        pi.Address, 
+        pi.PostalCode, 
+        pi.RoadName, 
+        pi.HouseNumber, 
+        pi.City, 
+        pi.Country,
+        a.AdminId, 
+        a.IsAdmin,
+        m.ModeratorId, 
+        m.IsMod
+    FROM EmployeeTB e
+    INNER JOIN PersonTB p ON e.PersonId = p.PersonId
+    INNER JOIN PersonInfoTB pi ON p.PAddressId = pi.PAddressId
+    LEFT JOIN AdminTB a ON e.EmplyeeId = a.EmployeeId
+    LEFT JOIN ModeratorTB m ON e.EmplyeeId = m.EmployeeId
+    WHERE e.EmplyeeId = @EmployeeId;
+END;
+GO
+
+CREATE PROCEDURE [dbo].[CreateAUser]
+    @LoginName NVARCHAR(128),
+    @Password NVARCHAR(255)
+AS
+BEGIN
+    BEGIN TRY
+        -- Step 1: Create the login
+        DECLARE @Sql NVARCHAR(MAX);
+        SET @Sql = 'CREATE LOGIN [' + @LoginName + '] WITH PASSWORD = ''' + @Password + ''';';
+        EXEC sp_executesql @Sql;
+
+        -- Step 2: Create the user in the specified database
+        SET @Sql = 'USE [AutoAuctionDB]; CREATE USER [' + @LoginName + '] FOR LOGIN [' + @LoginName + '];';
+        EXEC sp_executesql @Sql;
+
+        -- Step 3: Grant EXECUTE permission
+        SET @Sql = 'GRANT EXECUTE TO [' + @LoginName + '];';
+        EXEC sp_executesql @Sql;
+
+        -- Step 4: Deny SELECT on tables
+        SET @Sql = 'DENY SELECT ON SCHEMA::dbo TO [' + @LoginName + '];';
+        EXEC sp_executesql @Sql;
+
+        -- Step 5: Deny INSERT on tables
+        SET @Sql = 'DENY INSERT ON SCHEMA::dbo TO [' + @LoginName + '];';
+        EXEC sp_executesql @Sql;
+
+        -- Step 6: Deny UPDATE on tables
+        SET @Sql = 'DENY UPDATE ON SCHEMA::dbo TO [' + @LoginName + '];';
+        EXEC sp_executesql @Sql;
+
+        -- Step 7: Deny DELETE on tables
+        SET @Sql = 'DENY DELETE ON SCHEMA::dbo TO [' + @LoginName + '];';
+        EXEC sp_executesql @Sql;
+
+        PRINT 'User created successfully.';
+    END TRY
+    BEGIN CATCH
+        PRINT 'Error occurred: ' + ERROR_MESSAGE();
+    END CATCH;
+END;

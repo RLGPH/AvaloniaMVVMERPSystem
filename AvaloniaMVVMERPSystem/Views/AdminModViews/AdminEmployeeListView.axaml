@@ -1,0 +1,72 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaMVVMERPSystem.Views.AdminEmployeeListView"
+			 xmlns:views="using:AvaloniaMVVMERPSystem.ViewModels"
+			 x:DataType="views:AdminEmployeeListViewModel">
+	
+	<Grid ShowGridLines="True">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Border BorderThickness="6" BorderBrush="Gray" Grid.RowSpan="2">
+			<ListBox ItemsSource="{Binding Employees}">
+				<ListBox.ItemTemplate>
+				  <DataTemplate>
+						<WrapPanel Orientation="Horizontal">
+							<TextBlock Text="Firstname:" Margin="5"/>
+							<TextBlock Text="{Binding FirstName}" Margin="5"/>
+
+							<TextBlock Text="LastName:" Margin="5"/>
+							<TextBlock Text="{Binding LastName}" Margin="5"/>
+
+							<TextBlock Text="IsMod:" Margin="5"/>
+							<TextBlock Text="{Binding _moderator.IsMod}" Margin="5"/>
+
+							<TextBlock Text="IsAdmin:" Margin="5"/>
+							<TextBlock Text="{Binding _admin.IsAdmin}" Margin="5"/>
+
+							<TextBlock Text="ID:" Margin="5"/>
+							<TextBlock Text="{Binding EmployeeId}" Margin="5"/>
+						</WrapPanel>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</Border>
+		<Border Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="5" BorderBrush="Gray">
+			<StackPanel>
+				<TextBlock Text="Selected Employee" HorizontalAlignment="Center"/>
+				<StackPanel Orientation="Horizontal">
+					<TextBlock Text="Name:" Margin="5"/>
+					<TextBlock Text="N/A" Margin="5"/>
+					<TextBlock Text="N/A" Margin="5"/>
+				</StackPanel>
+				
+				<StackPanel Orientation="Horizontal">
+					<TextBlock Text="Employee ID:" Margin="5"/>
+					<TextBlock Text="N/A" Margin="5"/>
+				</StackPanel>
+
+				<StackPanel Orientation="Horizontal">
+					<TextBlock Text="Is Admin:" Margin="5"/>
+					<TextBlock Text="N/A" Margin="5"/>
+					<TextBlock Text="Is Mod" Margin="5"/>
+					<TextBlock Text="N/A" Margin="5"/>
+				</StackPanel>
+			</StackPanel>
+		</Border>
+		
+		<StackPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+			<Button Content="Edit Employee" Margin="10"/>
+			<Button Content="Remove Employee" Margin="10"/>
+			<Button Content="Back" Margin="10"/>
+		</StackPanel>
+	</Grid>
+</UserControl>
