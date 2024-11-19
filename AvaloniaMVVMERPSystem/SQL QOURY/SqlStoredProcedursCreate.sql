@@ -161,3 +161,50 @@ BEGIN
         PRINT 'Error occurred: ' + ERROR_MESSAGE();
     END CATCH;
 END;
+GO
+CREATE PROCEDURE GetAllEmployees
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        e.EmplyeeId AS EmployeeId, 
+        e.EmplyeePassword AS EmployeePassword, 
+        e.Tital AS Title, 
+        e.WorkMail, 
+        e.WorkTlf, 
+        e.AdminPassword,
+        p.PersonId, 
+        p.FirstName, 
+        p.LastName,
+        pi.CPRNumber,
+        pi.PAddressId, 
+        pi.Mail, 
+        pi.Tlf, 
+        pi.Address, 
+        pi.PostalCode, 
+        pi.RoadName, 
+        pi.HouseNumber, 
+        pi.City, 
+        pi.Country,
+        a.AdminId, 
+        a.IsAdmin,
+        m.ModeratorId, 
+        m.IsMod
+    FROM EmployeeTB e
+    INNER JOIN PersonTB p ON e.PersonId = p.PersonId
+    INNER JOIN PersonInfoTB pi ON p.PAddressId = pi.PAddressId
+    LEFT JOIN AdminTB a ON e.EmplyeeId = a.EmployeeId
+    LEFT JOIN ModeratorTB m ON e.EmplyeeId = m.EmployeeId;
+END;
+GO
+CREATE PROCEDURE DeleteEmployee
+    @EmployeeId INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM EmployeeTB
+    WHERE EmplyeeId = @EmployeeId;
+END;
+GO

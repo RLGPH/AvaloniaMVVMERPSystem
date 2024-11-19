@@ -30,9 +30,12 @@ namespace AvaloniaMVVMERPSystem.ViewModels
             set => this.RaiseAndSetIfChanged(ref _lastName, value);
         }
 
+        public ReactiveCommand<Unit, Unit> EditEmployee {  get; }
         public ReactiveCommand<Unit, Unit> AddEmployee { get; }
         public ReactiveCommand<Unit, Unit> BackToNormlogin { get; }
         public ReactiveCommand<Unit, Unit> EditAccount { get; }
+        public ReactiveCommand<Unit,Unit> AddInventory {  get; }
+
         public AdminModViewModel(MainWindowViewModel mainWindowViewModel, Database database, ModelCommands modCommands, Employee employee)
         {
             _MainWindowViewModel = mainWindowViewModel;
@@ -43,11 +46,15 @@ namespace AvaloniaMVVMERPSystem.ViewModels
             FirstName = employee.FirstName;
             LastName = employee.LastName;
 
-            EditAccount = ReactiveCommand.Create(() => modCommands.SwitchToEditAccountA(database, employee, mainWindowViewModel, modCommands));
+            EditEmployee = ReactiveCommand.Create(() => modCommands.SwitchToAdminEmployeeList(database, employee, mainWindowViewModel, modCommands));
+
+            EditAccount = ReactiveCommand.Create(() => modCommands.SwitchToEditAccountA(database, employee, mainWindowViewModel, modCommands, employee));
 
             AddEmployee = ReactiveCommand.Create(() => modCommands.AddEmployeeView(database,mainWindowViewModel,modCommands,employee));
 
             BackToNormlogin = ReactiveCommand.Create(() => modCommands.SwitchToNormLogin(database, mainWindowViewModel, modCommands));
+
+            AddInventory = ReactiveCommand.Create(() => modCommands.SwitchToAddInventory(database, mainWindowViewModel, modCommands, employee));
         }
     }
 }

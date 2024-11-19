@@ -9,21 +9,18 @@ using System.Threading.Tasks;
 
 namespace AvaloniaMVVMERPSystem.ViewModels
 {
-    public class AdminEditAcountViewModel : ViewModelBase
+    public class AddInventoryViewModel : ViewModelBase
     {
         private readonly MainWindowViewModel _MainWindowViewModel;
         private readonly Database _Database;
         private ModelCommands _ModelCommands;
         private Employee _employee;
-
-        public AdminEditAcountViewModel(MainWindowViewModel mainWindowViewModel, Database database, ModelCommands modCommands, Employee employee, Employee editEmployee)
+        public AddInventoryViewModel(MainWindowViewModel mainWindowViewModel, Database database, ModelCommands modCommands, Employee employee)
         {
             _MainWindowViewModel = mainWindowViewModel;
             _Database = database;
             _ModelCommands = modCommands;
             _employee = employee;
-
-
         }
     }
 }

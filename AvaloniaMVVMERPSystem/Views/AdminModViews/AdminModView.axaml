@@ -43,9 +43,9 @@
 			</StackPanel>
 
 			<StackPanel>
-				<Button Content="Edit Employee" Margin="10" Width="120"/>
+				<Button Content="Edit Employee" Margin="10" Width="120" Command="{Binding EditEmployee}"/>
 				<Button Content="Edit inventory" Margin="10" Width="120"/>
-				<Button Content="+Add Inventory" Background="Green" Margin="10" Width="120"/>
+				<Button Content="+Add Inventory" Background="Green" Margin="10" Width="120" Command="{Binding AddInventory}"/>
 				<Button Content="Logout" Background="Red" Margin="10" Width="120" Command="{Binding BackToNormlogin}"/>
 			</StackPanel>
 		</StackPanel>

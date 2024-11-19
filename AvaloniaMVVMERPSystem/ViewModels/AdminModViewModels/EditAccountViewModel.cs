@@ -3,13 +3,7 @@ using AvaloniaMVVMERPSystem.DataBase;
 using AvaloniaMVVMERPSystem.Models;
 using ReactiveUI;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Reactive;
-using System.Text;
-using System.Threading.Tasks;
-using Tmds.DBus.Protocol;
 
 namespace AvaloniaMVVMERPSystem.ViewModels
 {
@@ -17,77 +11,200 @@ namespace AvaloniaMVVMERPSystem.ViewModels
     {
         private readonly MainWindowViewModel _MainWindowViewModel;
         private readonly Database _Database;
-        private ModelCommands _ModelCommands;
-        private Employee _employee;
+        private readonly ModelCommands _ModelCommands;
+        private readonly Employee _employee;
 
-        // Properties for form fields
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Password { get; set; }
-        public string ReenterPassword { get; set; }
-        public string CPRNumber { get; set; }
-        public string PostalCode { get; set; }
-        public string Address { get; set; }
-        public string RoadName { get; set; }
-        public string HouseNumber { get; set; }
-        public string City { get; set; }
-        public string Country { get; set; }
-        public string PersonalMail { get; set; }
-        public string PersonalPhone { get; set; }
-        public string WorkMail { get; set; }
-        public string WorkPhone { get; set; }
-        public string Title { get; set; }
-        public bool IsAdmin { get; set; }
-        public bool IsMod { get; set; }
-        public string AdminPassword { get; set; }
-        public string ReenterAdminPassword { get; set; }
+        private string _firstName;
+        private string _lastName;
+        private string _password;
+        private string _reenterPassword;
+        private string _cprNumber;
+        private string _postalCode;
+        private string _address;
+        private string _roadName;
+        private string _houseNumber;
+        private string _city;
+        private string _country;
+        private string _personalMail;
+        private string _personalPhone;
+        private string _workMail;
+        private string _workPhone;
+        private string _title;
+        private bool _isAdmin;
+        private bool _isMod;
+        private string _adminPassword;
+        private string _reenterAdminPassword;
 
+        // Reactive properties
+        public string FirstName
+        {
+            get => _firstName;
+            set => this.RaiseAndSetIfChanged(ref _firstName, value);
+        }
+
+        public string LastName
+        {
+            get => _lastName;
+            set => this.RaiseAndSetIfChanged(ref _lastName, value);
+        }
+
+        public string Password
+        {
+            get => _password;
+            set => this.RaiseAndSetIfChanged(ref _password, value);
+        }
+
+        public string ReenterPassword
+        {
+            get => _reenterPassword;
+            set => this.RaiseAndSetIfChanged(ref _reenterPassword, value);
+        }
+
+        public string CPRNumber
+        {
+            get => _cprNumber;
+            set => this.RaiseAndSetIfChanged(ref _cprNumber, value);
+        }
+
+        public string PostalCode
+        {
+            get => _postalCode;
+            set => this.RaiseAndSetIfChanged(ref _postalCode, value);
+        }
+
+        public string Address
+        {
+            get => _address;
+            set => this.RaiseAndSetIfChanged(ref _address, value);
+        }
+
+        public string RoadName
+        {
+            get => _roadName;
+            set => this.RaiseAndSetIfChanged(ref _roadName, value);
+        }
+
+        public string HouseNumber
+        {
+            get => _houseNumber;
+            set => this.RaiseAndSetIfChanged(ref _houseNumber, value);
+        }
+
+        public string City
+        {
+            get => _city;
+            set => this.RaiseAndSetIfChanged(ref _city, value);
+        }
+
+        public string Country
+        {
+            get => _country;
+            set => this.RaiseAndSetIfChanged(ref _country, value);
+        }
+
+        public string PersonalMail
+        {
+            get => _personalMail;
+            set => this.RaiseAndSetIfChanged(ref _personalMail, value);
+        }
+
+        public string PersonalPhone
+        {
+            get => _personalPhone;
+            set => this.RaiseAndSetIfChanged(ref _personalPhone, value);
+        }
+
+        public string WorkMail
+        {
+            get => _workMail;
+            set => this.RaiseAndSetIfChanged(ref _workMail, value);
+        }
+
+        public string WorkPhone
+        {
+            get => _workPhone;
+            set => this.RaiseAndSetIfChanged(ref _workPhone, value);
+        }
+
+        public string Title
+        {
+            get => _title;
+            set => this.RaiseAndSetIfChanged(ref _title, value);
+        }
+
+        public bool IsAdmin
+        {
+            get => _isAdmin;
+            set => this.RaiseAndSetIfChanged(ref _isAdmin, value);
+        }
+
+        public bool IsMod
+        {
+            get => _isMod;
+            set => this.RaiseAndSetIfChanged(ref _isMod, value);
+        }
+
+        public string AdminPassword
+        {
+            get => _adminPassword;
+            set => this.RaiseAndSetIfChanged(ref _adminPassword, value);
+        }
+
+        public string ReenterAdminPassword
+        {
+            get => _reenterAdminPassword;
+            set => this.RaiseAndSetIfChanged(ref _reenterAdminPassword, value);
+        }
+
+        // Commands
         public ReactiveCommand<Unit, Unit> BackToMenu { get; }
-
         public ReactiveCommand<Unit, Unit> EditEmployee { get; }
 
-        public EditAccountViewModel(MainWindowViewModel mainWindowViewModel, Database database, ModelCommands modCommands, Employee employee)
+        public EditAccountViewModel(MainWindowViewModel mainWindowViewModel, Database database, ModelCommands modCommands, Employee employee, Employee editEmployee)
         {
             _MainWindowViewModel = mainWindowViewModel;
             _Database = database;
             _ModelCommands = modCommands;
             _employee = employee;
 
+            // Initialize commands
             BackToMenu = ReactiveCommand.Create(() => modCommands.SwitchToAdminMenu(database, mainWindowViewModel, modCommands, employee));
+            EditEmployee = ReactiveCommand.Create(() => UpdateEmployee(editEmployee));
 
-            //the pre assigned data
-            FirstName = employee.FirstName;
-            LastName = employee.LastName;
+            // Load initial data
+            FirstName = editEmployee.FirstName;
+            LastName = editEmployee.LastName;
             Password = "*********";
             ReenterPassword = "*********";
             AdminPassword = "*********";
             ReenterAdminPassword = "*********";
-            CPRNumber = employee.CPRNumber;
-            PostalCode = employee.PInfo.PostalCode;
-            Address = employee.PInfo.Address;
-            RoadName = employee.PInfo.RoadName;
-            HouseNumber = employee.PInfo.HouseNumber;
-            City = employee.PInfo.City;
-            Country = employee.PInfo.Country;
-            PersonalMail = employee.PInfo.Mail;
-            PersonalPhone = employee.PInfo.Tlf;
-            WorkMail = employee.WorkMail;
-            WorkPhone = employee.WorkTlf;
-            Title = employee.Title;
-            IsAdmin = employee._admin.IsAdmin;
-            IsMod = employee._moderator.IsMod;
+            CPRNumber = editEmployee.CPRNumber;
+            PostalCode = editEmployee.PInfo.PostalCode;
+            Address = editEmployee.PInfo.Address;
+            RoadName = editEmployee.PInfo.RoadName;
+            HouseNumber = editEmployee.PInfo.HouseNumber;
+            City = editEmployee.PInfo.City;
+            Country = editEmployee.PInfo.Country;
+            PersonalMail = editEmployee.PInfo.Mail;
+            PersonalPhone = editEmployee.PInfo.Tlf;
+            WorkMail = editEmployee.WorkMail;
+            WorkPhone = editEmployee.WorkTlf;
+            Title = editEmployee.Title;
+            IsAdmin = editEmployee._admin.IsAdmin;
+            IsMod = editEmployee._moderator.IsMod;
+        }
 
-            PersonaLInfo info = new(employee.PInfo.PersonalInfoId, PersonalMail, PersonalPhone, Address, PostalCode, RoadName,
+        private void UpdateEmployee(Employee editEmployee)
+        {
+            var info = new PersonaLInfo(editEmployee.PInfo.PersonalInfoId, PersonalMail, PersonalPhone, Address, PostalCode, RoadName,
                 HouseNumber, City, Country);
+            var admin = new Admin(editEmployee._admin.AdminId, IsAdmin);
+            var mod = new Moderator(editEmployee._moderator.ModeratorId, IsMod);
 
-            Admin admin = new(employee._admin.AdminId, IsAdmin);
+            var newEmployee = new Employee(editEmployee.EmployeeId, Password, Title, WorkMail, WorkPhone, AdminPassword,
+                editEmployee.PersonId, FirstName, LastName, CPRNumber, info, admin, mod);
 
-            Moderator mod = new(employee._moderator.ModeratorId, IsMod);
-
-            Employee NewEmployee = new(employee.EmployeeId, employee.EmployeePassword, Title, WorkMail, WorkPhone, employee.AdminPassword, employee.PersonId
-                , FirstName, LastName, employee.CPRNumber, info, admin, mod);
-
-            EditEmployee = ReactiveCommand.Create(() => modCommands.EditAccount(NewEmployee, employee, database, mainWindowViewModel, modCommands));
+            _ModelCommands.EditAccount(newEmployee, editEmployee, _Database, _MainWindowViewModel, _ModelCommands);
         }
     }
 }

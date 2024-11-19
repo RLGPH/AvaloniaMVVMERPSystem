@@ -27,17 +27,25 @@ namespace AvaloniaMVVMERPSystem.Models
         {
 
         }
-        public void SwitchToAdminLogin(Database _Database, MainWindowViewModel _MainWindowViewModel, ModelCommands modelCommands)
+        public void SwitchToAdminLogin(Database _database, MainWindowViewModel _MainWindowViewModel, ModelCommands modelCommands)
         {
-            _MainWindowViewModel.SwitchViewModel(new AdminLoginViewModel(_MainWindowViewModel, _Database, modelCommands));
+            _MainWindowViewModel.SwitchViewModel(new AdminLoginViewModel(_MainWindowViewModel, _database, modelCommands));
         }
-        public void LoginAsAdmin(Database _Database, MainWindowViewModel _MainWindowViewModel, ModelCommands modelCommands, Employee employee)
+        public void LoginAsAdmin(Database _database, MainWindowViewModel _MainWindowViewModel, ModelCommands modelCommands, Employee employee)
         {
-            _MainWindowViewModel.SwitchViewModel(new AdminModViewModel(_MainWindowViewModel, _Database, modelCommands, employee));
+            _MainWindowViewModel.SwitchViewModel(new AdminModViewModel(_MainWindowViewModel, _database, modelCommands, employee));
         }
-        public void SwitchToEditAccountA(Database _database, Employee _employee, MainWindowViewModel _mainWindowViewModel, ModelCommands modelCommands)
+        public void SwitchToEditAccountA(Database _database, Employee _employee, MainWindowViewModel _mainWindowViewModel, ModelCommands modelCommands, Employee editEmployee)
         {
-            _mainWindowViewModel.SwitchViewModel(new EditAccountViewModel(_mainWindowViewModel, _database, modelCommands, _employee));
+            _mainWindowViewModel.SwitchViewModel(new EditAccountViewModel(_mainWindowViewModel, _database, modelCommands, _employee, editEmployee));
+        }
+        public void SwitchToAdminEmployeeList(Database _database, Employee _employee, MainWindowViewModel _mainWindowViewModel, ModelCommands modelCommands)
+        {
+            _mainWindowViewModel.SwitchViewModel(new AdminEmployeeListViewModel(_mainWindowViewModel, _database, modelCommands, _employee));
+        }
+        public void SwitchToAddInventory(Database _dataBase, MainWindowViewModel _mainWindowViewModel, ModelCommands modelCommands, Employee _employee)
+        {
+            _mainWindowViewModel.SwitchViewModel(new AddInventoryViewModel(_mainWindowViewModel,_dataBase, modelCommands, _employee));
         }
     }
 }

@@ -9,14 +9,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Folder Include="Classes\Location\" />
-		<Folder Include="Classes\StorageItem\" />
+		<Folder Include="DataBase\InventoryAndLocations\Items\" />
 		<Folder Include="DataBase\UserOrEmplyeeTypeDB\User\" />
 		<Folder Include="DataBase\UserOrEmplyeeTypeDB\Admin\" />
 		<Folder Include="DataBase\UserOrEmplyeeTypeDB\Moderator\" />
 		<Folder Include="DataBase\InventoryAndLocations\Inventory\" />
 		<Folder Include="DataBase\InventoryAndLocations\CountryAndBranches\" />
-		<Folder Include="DataBase\InventoryAndLocations\Items\" />
 		<Folder Include="Models\EmployeeCommands\" />
 		<Folder Include="Models\Methods for logic\" />
 	</ItemGroup>

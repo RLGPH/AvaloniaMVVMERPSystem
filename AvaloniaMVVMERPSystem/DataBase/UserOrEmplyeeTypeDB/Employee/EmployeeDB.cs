@@ -152,65 +152,80 @@ namespace AvaloniaMVVMERPSystem.DataBase
             }
         }
 
-        public ObservableCollection<Employee> GetAllEmployees() 
+        public ObservableCollection<Employee> GetAllEmployees()
         {
-            ObservableCollection<Employee> employees = new ObservableCollection<Employee>();
-            using (SqlConnection conn = GetConnection()) // Call the static GetConnection method
+            var employees = new ObservableCollection<Employee>();
+
+            using (SqlConnection conn = GetConnection())
             {
+                conn.Open();
                 using (SqlCommand cmd = new SqlCommand("GetAllEmployees", conn))
                 {
-
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    conn.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            // Creating PersonInfo instance
-                            var personalInfo = new PersonaLInfo(
-                            personalInfoId: reader.GetInt32(reader.GetOrdinal("PAddressId")),
-                            mail: reader.GetString(reader.GetOrdinal("Mail")),
-                            tlf: reader.GetString(reader.GetOrdinal("Tlf")),
-                            address: reader.GetString(reader.GetOrdinal("Address")),
-                            postalCode: reader.GetString(reader.GetOrdinal("PostalCode")),
-                            roadName: reader.GetString(reader.GetOrdinal("RoadName")),
-                            houseNumber: reader.GetString(reader.GetOrdinal("HouseNumber")),
-                            city: reader.GetString(reader.GetOrdinal("City")),
+                            // Map the data to the Employee, Person, PersonaLInfo, Admin, and Moderator classes
+                            var personInfo = new PersonaLInfo(
+                                personalInfoId: reader.GetInt32(reader.GetOrdinal("PAddressId")),
+                                mail: reader.GetString(reader.GetOrdinal("Mail")),
+                                tlf: reader.GetString(reader.GetOrdinal("Tlf")),
+                                address: reader.GetString(reader.GetOrdinal("Address")),
+                                postalCode: reader.GetString(reader.GetOrdinal("PostalCode")),
+                                roadName: reader.GetString(reader.GetOrdinal("RoadName")),
+                                houseNumber: reader.GetString(reader.GetOrdinal("HouseNumber")),
+                                city: reader.GetString(reader.GetOrdinal("City")),
                                 country: reader.GetString(reader.GetOrdinal("Country"))
                             );
 
-                            // Creating Admin instance with default values if not found
-                            Admin admin = new Admin(
-                            adminId: reader.IsDBNull(reader.GetOrdinal("AdminId")) ? 0 : reader.GetInt32(reader.GetOrdinal("AdminId")),
-                            isAdmin: reader.IsDBNull(reader.GetOrdinal("IsAdmin")) ? false : reader.GetBoolean(reader.GetOrdinal("IsAdmin"))
+                            var admin = new Admin(
+                                adminId: reader.IsDBNull(reader.GetOrdinal("AdminId")) ? 0 : reader.GetInt32(reader.GetOrdinal("AdminId")),
+                                isAdmin: !reader.IsDBNull(reader.GetOrdinal("IsAdmin")) && reader.GetBoolean(reader.GetOrdinal("IsAdmin"))
                             );
 
-                            // Creating Moderator instance with default values if not found
-                            Moderator moderator = new Moderator(
-                            modId: reader.IsDBNull(reader.GetOrdinal("ModeratorId")) ? 0 : reader.GetInt32(reader.GetOrdinal("ModeratorId")),
-                            isMod: reader.IsDBNull(reader.GetOrdinal("IsMod")) ? false : reader.GetBoolean(reader.GetOrdinal("IsMod"))
+                            var moderator = new Moderator(
+                                modId: reader.IsDBNull(reader.GetOrdinal("ModeratorId")) ? 0 : reader.GetInt32(reader.GetOrdinal("ModeratorId")),
+                                isMod: !reader.IsDBNull(reader.GetOrdinal("IsMod")) && reader.GetBoolean(reader.GetOrdinal("IsMod"))
                             );
-                            Employee employee = new Employee(
+
+                            var employee = new Employee(
                                 employeeId: reader.GetInt32(reader.GetOrdinal("EmployeeId")),
                                 emplyeePassword: reader.GetString(reader.GetOrdinal("EmployeePassword")),
                                 title: reader.GetString(reader.GetOrdinal("Title")),
                                 workMail: reader.GetString(reader.GetOrdinal("WorkMail")),
                                 workTlf: reader.GetString(reader.GetOrdinal("WorkTlf")),
-                                adminPassword: reader.IsDBNull(reader.GetOrdinal("AdminPassword")) ? null : reader.GetString(reader.GetOrdinal("AdminPassword")), // Null check for admin password
+                                adminPassword: reader.GetString(reader.GetOrdinal("AdminPassword")),
                                 personId: reader.GetInt32(reader.GetOrdinal("PersonId")),
                                 firstName: reader.GetString(reader.GetOrdinal("FirstName")),
                                 lastName: reader.GetString(reader.GetOrdinal("LastName")),
                                 cprNumber: reader.GetString(reader.GetOrdinal("CPRNumber")),
-                                pInfo: personalInfo,
+                                pInfo: personInfo,
                                 admin: admin,
                                 moderator: moderator
                             );
+
                             employees.Add(employee);
                         }
-                        conn.Close();
-                        return employees;
                     }
+                    conn.Close();
+                }
+            }
+            return employees;
+        }
+
+        public void DeleteEmployee(int employeeId)
+        {
+            using (SqlConnection conn = GetConnection()) // Call the static GetConnection method
+            {
+                using (SqlCommand cmd = new SqlCommand("DeleteEmployee", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@EmployeeId", employeeId);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery(); 
                 }
             }
         }

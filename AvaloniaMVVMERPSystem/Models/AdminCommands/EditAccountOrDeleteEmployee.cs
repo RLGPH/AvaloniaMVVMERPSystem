@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AvaloniaMVVMERPSystem.Classes;
@@ -16,6 +18,14 @@ namespace AvaloniaMVVMERPSystem.Models
             employee = database.EditEmployee(changed, employee);
 
             SwitchToAdminMenu(database, mainWindowViewModel, modelCommands, employee);
+        }
+
+        public ObservableCollection<Employee> DeletEmployee(int id, Database dataBase)
+        {
+            ObservableCollection<Employee> employees = new();
+            dataBase.DeleteEmployee(id);
+
+            return employees = dataBase.GetAllEmployees();
         }
     }
 }
