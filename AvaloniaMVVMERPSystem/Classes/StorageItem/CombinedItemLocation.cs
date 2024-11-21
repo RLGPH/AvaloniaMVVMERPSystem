@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AvaloniaMVVMERPSystem.Classes.StorageItem
+namespace AvaloniaMVVMERPSystem.Classes
 {
     public class CombinedItemLocation
     {

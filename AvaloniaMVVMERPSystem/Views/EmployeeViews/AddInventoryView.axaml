@@ -16,6 +16,73 @@
 			<ColumnDefinition Width="*"/>
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
+
+		<StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+			
+			<Button Content="Check" Margin="5" Command="{Binding}"/>
+			<Button Content="Add Item" Margin="5" Command="{Binding}"/>
+			<Button Content="Back" Margin="5" Command="{Binding}"/>
+			
+		</StackPanel>
+		
+		<Border BorderBrush="Gray" BorderThickness="5" CornerRadius="10" Grid.Column="1" Grid.RowSpan="2">
+			<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="400">
+				<StackPanel>
+					<TextBlock Text="Add To Inventory" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center"/>
+					<WrapPanel>
+						<StackPanel Orientation="Horizontal" Margin="10">
+							<TextBlock Text="Item Name:" Margin="5,10,5,5"/>
+							<TextBox Watermark="Magic Screws!!!" MinWidth="150" Margin="0,5,0,0"/>
+						</StackPanel>
+					
+						<StackPanel Orientation="Horizontal" Margin="10">
+							<TextBlock Text="Item Description:" Margin="5,10,5,5"/>
+							<TextBox Watermark="Its this tall and this wide etc, etc," MinWidth="200" MinHeight="200" Margin="0,5,0,0"/>
+						</StackPanel>
+
+					
+						<TextBlock Text="Storage space is in how many pallet's are there" Margin="15,10,5,5"/>
+					
+						<StackPanel Orientation="Horizontal" Margin="10">
+							<TextBlock Text="Storage space needed" Margin="5,10,5,5"/>
+							<TextBox Watermark="20" Width="100"/>
+						</StackPanel>
+
+						<StackPanel Orientation="Horizontal" Margin="10">
+							<TextBlock Text="Select Location" Margin="5,10,5,5"/>
+							<ComboBox MinWidth="100">
+							
+							</ComboBox>
+						</StackPanel>
+					
+						<StackPanel Orientation="Horizontal" Margin="10">
+							<TextBlock Text="Country:" Margin="5,10,5,5"/>
+							<TextBlock Text="{Binding LCountry}" Margin="0,10,5,5"/>
+						</StackPanel>
+
+						<StackPanel Orientation="Horizontal" Margin="10">
+							<TextBlock Text="City:" Margin="5,10,5,5"/>
+							<TextBlock Text="{Binding LCity}" Margin="0,10,5,5"/>
+						</StackPanel>
+
+						<StackPanel Orientation="Horizontal" Margin="10">
+							<TextBlock Text="Street:" Margin="5,10,5,5"/>
+							<TextBlock Text="{Binding LStreet}" Margin="0,10,5,5"/>
+						</StackPanel>
+
+						<StackPanel Orientation="Horizontal" Margin="10">
+							<TextBlock Text="Zip Code:" Margin="5,10,5,5"/>
+							<TextBlock Text="{Binding LZipCode}" Margin="0,10,5,5"/>
+						</StackPanel>
+
+						<StackPanel Orientation="Horizontal" Margin="10">
+							<TextBlock Text="Storage Space Left:" Margin="5,10,5,5"/>
+							<TextBlock Text="{Binding StorageSpaceLeft}" Margin="0,10,5,5"/>
+						</StackPanel>
+					</WrapPanel>
+				</StackPanel>
+			</ScrollViewer>
+		</Border>
 		
 	</Grid>
 </UserControl>

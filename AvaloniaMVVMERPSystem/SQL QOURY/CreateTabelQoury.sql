@@ -66,3 +66,15 @@ CREATE TABLE AdminTB(
     FOREIGN KEY (EmployeeId) REFERENCES EmployeeTB(EmplyeeId) ON DELETE CASCADE
 );
 GO
+
+-- Create the Location table
+CREATE TABLE Location (
+    LocationId INT PRIMARY KEY IDENTITY(1,1),
+    LocationName NVARCHAR(100) NOT NULL,
+    LCountry NVARCHAR(50) NOT NULL,
+    LCity NVARCHAR(50) NOT NULL,
+    LStreet NVARCHAR(100) NOT NULL,
+    LZipCode NVARCHAR(20) NOT NULL,
+    StorageSpaceLeft INT NOT NULL
+);
+GO

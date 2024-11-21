@@ -208,3 +208,11 @@ BEGIN
     WHERE EmplyeeId = @EmployeeId;
 END;
 GO
+
+-- Create the GetAllLocations stored procedure
+CREATE PROCEDURE GetAllLocations
+AS
+BEGIN
+    SELECT LocationId, LocationName, LCountry, LCity, LStreet, LZipCode, StorageSpaceLeft
+    FROM Location;
+END;
