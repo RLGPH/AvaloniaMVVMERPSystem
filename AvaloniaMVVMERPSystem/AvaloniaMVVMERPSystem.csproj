@@ -9,9 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Folder Include="DataBase\InventoryAndLocations\Items\" />
 		<Folder Include="DataBase\UserOrEmplyeeTypeDB\User\" />
-		<Folder Include="DataBase\InventoryAndLocations\Inventory\" />
 		<Folder Include="Models\Methods for logic\" />
 	</ItemGroup>
 

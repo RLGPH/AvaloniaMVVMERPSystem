@@ -16,65 +16,98 @@
 			<ColumnDefinition Width="*"/>
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
+		
+		
+		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
+			<TextBlock Text="Status"/>
+			
+			<TextBlock Text="{Binding Status}"/>
+		</StackPanel>
+
+		<Popup IsOpen="{Binding IsPopupOpen}" PlacementMode="Center">
+			<Border Background="LightGray" Padding="20" CornerRadius="10">
+				<StackPanel>
+					<TextBlock Text="Enter Admin Password" Margin="0,0,0,5"/>
+					<TextBox Watermark="Pass123" Text="{Binding AdminPassword}" Margin="0,0,0,10"/>
+
+					<TextBlock Text="Re-enter Admin Password" Margin="0,0,0,5"/>
+					<TextBox Watermark="Pass123" Text="{Binding ReenteredPassword}" Margin="0,0,0,10"/>
+
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+						<Button Content="Continue" Command="{Binding ContinueCommand}" Margin="5"/>
+						<Button Content="Cancel" Command="{Binding CancelCommand}" Margin="5"/>
+					</StackPanel>
+				</StackPanel>
+			</Border>
+		</Popup>
 
 		<StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
 			
-			<Button Content="Check" Margin="5" Command="{Binding}"/>
-			<Button Content="Add Item" Margin="5" Command="{Binding}"/>
-			<Button Content="Back" Margin="5" Command="{Binding}"/>
+			<Button Content="Add Location" Margin="5" Command="{Binding AddLocation}"/>
+			<Button Content="Check" Margin="5" Command="{Binding Check}"/>
+			<Button Content="Add Item" Margin="5" Command="{Binding AddItem}"/>
+			<Button Content="Back" Margin="5" Command="{Binding Back}"/>
+			<Button Content="Back as Admin/Mod" Margin="5" Command="{Binding BackAdmin}"/>
 			
 		</StackPanel>
 		
 		<Border BorderBrush="Gray" BorderThickness="5" CornerRadius="10" Grid.Column="1" Grid.RowSpan="2">
 			<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="400">
-				<StackPanel>
+				<StackPanel Grid.Column="1" Grid.RowSpan="2">
 					<TextBlock Text="Add To Inventory" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center"/>
 					<WrapPanel>
+						<!-- Item Name -->
 						<StackPanel Orientation="Horizontal" Margin="10">
 							<TextBlock Text="Item Name:" Margin="5,10,5,5"/>
-							<TextBox Watermark="Magic Screws!!!" MinWidth="150" Margin="0,5,0,0"/>
+							<TextBox Watermark="Magic Screws!!!" MinWidth="150" Margin="0,5,0,0" Text="{Binding ItemName}"/>
 						</StackPanel>
-					
+
+						<!-- Item Description -->
 						<StackPanel Orientation="Horizontal" Margin="10">
 							<TextBlock Text="Item Description:" Margin="5,10,5,5"/>
-							<TextBox Watermark="Its this tall and this wide etc, etc," MinWidth="200" MinHeight="200" Margin="0,5,0,0"/>
+							<TextBox Watermark="Description" MinWidth="200" MinHeight="100" Margin="0,5,0,0" Text="{Binding ItemDescription}"/>
 						</StackPanel>
 
-					
-						<TextBlock Text="Storage space is in how many pallet's are there" Margin="15,10,5,5"/>
-					
+						<!-- Storage Space Needed -->
 						<StackPanel Orientation="Horizontal" Margin="10">
-							<TextBlock Text="Storage space needed" Margin="5,10,5,5"/>
-							<TextBox Watermark="20" Width="100"/>
+							<TextBlock Text="Storage space needed:" Margin="5,10,5,5"/>
+							<TextBox Watermark="20" Width="100" Text="{Binding StorageSpaceNeeded}"/>
 						</StackPanel>
 
+						<!-- Location Selector -->
 						<StackPanel Orientation="Horizontal" Margin="10">
-							<TextBlock Text="Select Location" Margin="5,10,5,5"/>
-							<ComboBox MinWidth="100">
-							
+							<TextBlock Text="Select Location:" Margin="5,10,5,5"/>
+							<ComboBox MinWidth="100" ItemsSource="{Binding LocationList}" SelectedItem="{Binding SelectedLocation}">
+								<ComboBox.ItemTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding LocationName}"/>
+									</DataTemplate>
+								</ComboBox.ItemTemplate>
 							</ComboBox>
 						</StackPanel>
-					
+
+						<!-- Location Details -->
+						<StackPanel Orientation="Horizontal" Margin="10">
+							<TextBlock Text="Location Name:" Margin="5,10,5,5"/>
+							<TextBlock Text="{Binding LocationName}" Margin="0,10,5,5"/>
+						</StackPanel>
+						
 						<StackPanel Orientation="Horizontal" Margin="10">
 							<TextBlock Text="Country:" Margin="5,10,5,5"/>
 							<TextBlock Text="{Binding LCountry}" Margin="0,10,5,5"/>
 						</StackPanel>
-
 						<StackPanel Orientation="Horizontal" Margin="10">
 							<TextBlock Text="City:" Margin="5,10,5,5"/>
 							<TextBlock Text="{Binding LCity}" Margin="0,10,5,5"/>
 						</StackPanel>
-
 						<StackPanel Orientation="Horizontal" Margin="10">
 							<TextBlock Text="Street:" Margin="5,10,5,5"/>
 							<TextBlock Text="{Binding LStreet}" Margin="0,10,5,5"/>
 						</StackPanel>
-
 						<StackPanel Orientation="Horizontal" Margin="10">
 							<TextBlock Text="Zip Code:" Margin="5,10,5,5"/>
 							<TextBlock Text="{Binding LZipCode}" Margin="0,10,5,5"/>
 						</StackPanel>
-
 						<StackPanel Orientation="Horizontal" Margin="10">
 							<TextBlock Text="Storage Space Left:" Margin="5,10,5,5"/>
 							<TextBlock Text="{Binding StorageSpaceLeft}" Margin="0,10,5,5"/>

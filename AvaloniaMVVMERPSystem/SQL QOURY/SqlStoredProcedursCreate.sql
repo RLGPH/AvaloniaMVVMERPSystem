@@ -216,3 +216,39 @@ BEGIN
     SELECT LocationId, LocationName, LCountry, LCity, LStreet, LZipCode, StorageSpaceLeft
     FROM Location;
 END;
+GO
+
+CREATE PROCEDURE AddItems
+    @ItemName NVARCHAR(255),
+    @Description NVARCHAR(MAX)
+AS
+BEGIN
+    INSERT INTO Item (ItemName, ItemDescription)
+    VALUES (@ItemName, @Description);
+END;
+GO
+
+CREATE PROCEDURE AddCombinedLocation
+    @LocationId INT,
+    @ItemId INT
+AS
+BEGIN
+    INSERT INTO CombinedItemLocation (LocationId, ItemId)
+    VALUES (@LocationId, @ItemId);
+END;
+GO
+
+CREATE PROCEDURE AddLocation
+    @LocationName NVARCHAR(255),
+    @LCountry NVARCHAR(255),
+    @LStreet NVARCHAR(255),
+    @LCity NVARCHAR(255),
+    @LZipCode NVARCHAR(50),
+    @StorageSpaceLeft FLOAT
+AS
+BEGIN
+    INSERT INTO Location (LocationName, LCountry, LStreet, LCity, LZipCode, StorageSpaceLeft)
+    VALUES (@LocationName, @LCountry, @LStreet, @LCity, @LZipCode, @StorageSpaceLeft);
+END;
+
+

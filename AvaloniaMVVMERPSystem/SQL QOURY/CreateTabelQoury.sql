@@ -67,14 +67,29 @@ CREATE TABLE AdminTB(
 );
 GO
 
--- Create the Location table
+-- Table for Location
 CREATE TABLE Location (
-    LocationId INT PRIMARY KEY IDENTITY(1,1),
-    LocationName NVARCHAR(100) NOT NULL,
-    LCountry NVARCHAR(50) NOT NULL,
-    LCity NVARCHAR(50) NOT NULL,
-    LStreet NVARCHAR(100) NOT NULL,
-    LZipCode NVARCHAR(20) NOT NULL,
-    StorageSpaceLeft INT NOT NULL
+    LocationId INT IDENTITY(1,1) PRIMARY KEY,
+    LocationName VARCHAR(255) NOT NULL,
+    LCountry VARCHAR(255) NOT NULL,
+    LCity VARCHAR(255) NOT NULL,
+    LStreet VARCHAR(255) NOT NULL,
+    LZipCode VARCHAR(50) NOT NULL,
+    StorageSpaceLeft FLOAT NOT NULL
 );
-GO
+
+-- Table for Item
+CREATE TABLE Item (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    ItemName VARCHAR(255) NOT NULL,
+    ItemDescription VARCHAR(255) NOT NULL
+);
+
+-- Table for CombinedItemLocation
+CREATE TABLE CombinedItemLocation (
+    CombinedID INT IDENTITY(1,1) PRIMARY KEY,
+    LocationId INT NOT NULL,
+    ItemId INT NOT NULL,
+    FOREIGN KEY (LocationId) REFERENCES Location(LocationId),
+    FOREIGN KEY (ItemId) REFERENCES Item(Id)
+);

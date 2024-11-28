@@ -14,11 +14,31 @@ namespace AvaloniaMVVMERPSystem.DataBase
 {
     public partial class Database
     {
+        public void AddLocation(Classes.Location location)
+        {
+            using (SqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("AddLocation", conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@LocationName", location.LocationName);
+                    cmd.Parameters.AddWithValue("@LCountry", location.LCountry);
+                    cmd.Parameters.AddWithValue("@LStreet", location.LStreet);
+                    cmd.Parameters.AddWithValue("@LCity", location.LCity);
+                    cmd.Parameters.AddWithValue("@LZipCode", location.LZipCode);
+                    cmd.Parameters.AddWithValue("@StorageSpaceLeft", location.StorageSpaceLeft);
+
+                }
+            }
+        }
+
         public ObservableCollection<Classes.Location> GetLocations()
         {
             ObservableCollection<Classes.Location> locations = new ObservableCollection<Classes.Location>();
 
-            using (SqlConnection conn = GetConnection()) // Call the static GetConnection method
+            using (SqlConnection conn = GetConnection()) 
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand("GetAllLocations", conn))
@@ -29,16 +49,15 @@ namespace AvaloniaMVVMERPSystem.DataBase
                     {
                         while (reader.Read())
                         {
-                            Classes.Location location = new Classes.Location
-                            {
-                                LocationId = reader.GetInt32(reader.GetOrdinal("LocationId")),
-                                LocationName = reader.GetString(reader.GetOrdinal("LocationName")),
-                                LCountry = reader.GetString(reader.GetOrdinal("LCountry")),
-                                LCity = reader.GetString(reader.GetOrdinal("LCity")),
-                                LStreet = reader.GetString(reader.GetOrdinal("LStreet")),
-                                LZipCode = reader.GetString(reader.GetOrdinal("LZipCode")),
-                                StorageSpaceLeft = reader.GetInt32(reader.GetOrdinal("StorageSpaceLeft"))
-                            };
+                            Classes.Location location = new Classes.Location(
+                                reader.GetInt32(reader.GetOrdinal("LocationId")),
+                                reader.GetString(reader.GetOrdinal("LocationName")),
+                                reader.GetString(reader.GetOrdinal("LCountry")),
+                                reader.GetString(reader.GetOrdinal("LCity")),
+                                reader.GetString(reader.GetOrdinal("LStreet")),
+                                reader.GetString(reader.GetOrdinal("LZipCode")),
+                                reader.GetFloat(reader.GetOrdinal("StorageSpaceLeft"))
+                            );
                             locations.Add(location);
                         }
                     }
