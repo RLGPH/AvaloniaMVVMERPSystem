@@ -30,6 +30,8 @@ namespace AvaloniaMVVMERPSystem.ViewModels
         private Classes.Location _selectedLocation;
 
         public string Status { get; set; }
+        
+        //used in showing information about location and in adding a new location 
         public string LocationName { get; set; }
         public string LCountry { get; set; }
         public string LCity { get; set; }
@@ -83,11 +85,27 @@ namespace AvaloniaMVVMERPSystem.ViewModels
                 }
             }
         }
-        public bool IsPopupOpen { get; set; }
+        //back to AdminModView used to confirm they are admin
+        private bool _isPopupOpen;
+        public bool IsPopupOpen 
+        {
+            get => _isPopupOpen;
+            set => this.RaiseAndSetIfChanged(ref _isPopupOpen, value);
+        }
+
         public string AdminPassword { get; set; }
         public string ReenteredPassword { get; set; }
 
-        // Commands
+        //used for adding locations re-useing adminpassword and reenter
+        private bool _isPopupOpenLocation;
+        public bool IsPopupOpenLocation
+        {
+            get => _isPopupOpenLocation;
+            set => this.RaiseAndSetIfChanged(ref _isPopupOpenLocation, value);
+        }
+
+
+        //button Commands
         public ReactiveCommand<Unit, Unit> ContinueCommand { get; }
         public ReactiveCommand<Unit, Unit> CancelCommand { get; }
         public ReactiveCommand<Unit, Unit> AddLocation { get; set; }
@@ -105,13 +123,7 @@ namespace AvaloniaMVVMERPSystem.ViewModels
             bool ContinueOption = false;
 
             // Load locations
-            LocationList = new ObservableCollection<Classes.Location>();
-
-            Classes.Location location = new(0, "New", "New", "New", "New", "New", 0);
-
-            LocationList.Add(location);
-            LocationList.Add(database.GetLocations());
-
+            LocationList = new ObservableCollection<Classes.Location>(database.GetLocations());
 
             // Initialize commands
             AddItem = ReactiveCommand.Create(() =>
@@ -131,7 +143,7 @@ namespace AvaloniaMVVMERPSystem.ViewModels
                 Status = modCommands.AddInventory(SelectedLocation, ItemName, ItemDescription, database);
             });
 
-            AddLocation = ReactiveCommand.Create(() => { IsPopupOpen = true; ContinueOption = false; });
+            AddLocation = ReactiveCommand.Create(() => { IsPopupOpenLocation = true; ContinueOption = false; });
 
             BackAdmin = ReactiveCommand.Create(() => { IsPopupOpen = true; ContinueOption = true; });
 
@@ -142,16 +154,20 @@ namespace AvaloniaMVVMERPSystem.ViewModels
                     if (ContinueOption == true)
                     {
                         modCommands.SwitchToAdminMenu(database, mainWindowViewModel, modCommands, employee);
+                        IsPopupOpen = false;
                     }
-                    else if (ContinueOption == false && location != null)
+                    else if (ContinueOption == false)
                     {
-                        modCommands.AddLocation(database);
-                    }
+                        Status = modCommands.AddLocation(database, LocationName, LCountry, LCity, LStreet, LZipCode, StorageSpaceLeft);
+                        IsPopupOpenLocation = false;
+                    }                     
                 }
             });
 
-            // Default Status
-            Status = "N/A";
+            CancelCommand = ReactiveCommand.Create(() => { IsPopupOpenLocation = false; IsPopupOpen = false; });
+
+                // Default Status
+                Status = "N/A";
         }
     }
 }

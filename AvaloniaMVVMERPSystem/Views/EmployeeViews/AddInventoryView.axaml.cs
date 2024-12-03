@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace AvaloniaMVVMERPSystem;
+namespace AvaloniaMVVMERPSystem.Views;
 
 public partial class AddInventoryView : UserControl
 {

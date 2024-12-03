@@ -32,9 +32,12 @@ namespace AvaloniaMVVMERPSystem.Models
             }
             return "Failed to add the item";
         }
-        public void AddLocation(Database database)
+        public string AddLocation(Database database, string LocationName, string LCountry, string LCity,
+            string LStreet, string LZipCode, float StorageSpaceLeft)
         {
-
+            Location location = new(0, LocationName, LCountry, LCity, LStreet, LZipCode, StorageSpaceLeft);
+            database.AddLocation(location);
+            return "Succes fully added new Location";
         }
     }
 }

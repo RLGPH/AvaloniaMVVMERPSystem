@@ -24,6 +24,7 @@ namespace AvaloniaMVVMERPSystem.Classes
             LCountry = lCountry;
             LCity = lCity;
             LStreet = lStreet;
+            LZipCode = lZipCode;
             StorageSpaceLeft = storageSpaceLeft;
         }
     }

@@ -29,7 +29,8 @@ namespace AvaloniaMVVMERPSystem.DataBase
                     cmd.Parameters.AddWithValue("@LCity", location.LCity);
                     cmd.Parameters.AddWithValue("@LZipCode", location.LZipCode);
                     cmd.Parameters.AddWithValue("@StorageSpaceLeft", location.StorageSpaceLeft);
-
+                    
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
@@ -56,7 +57,7 @@ namespace AvaloniaMVVMERPSystem.DataBase
                                 reader.GetString(reader.GetOrdinal("LCity")),
                                 reader.GetString(reader.GetOrdinal("LStreet")),
                                 reader.GetString(reader.GetOrdinal("LZipCode")),
-                                reader.GetFloat(reader.GetOrdinal("StorageSpaceLeft"))
+                                Convert.ToSingle(reader.GetDouble(reader.GetOrdinal("StorageSpaceLeft")))
                             );
                             locations.Add(location);
                         }
