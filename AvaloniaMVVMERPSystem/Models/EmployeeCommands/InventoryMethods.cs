@@ -20,14 +20,14 @@ namespace AvaloniaMVVMERPSystem.Models
             return database.GetLocations(); 
         }
 
-        public string AddInventory(Location location, string ItemName, string ItemDesctription, Database database)
+        public string AddInventory(Location location, string ItemName, string ItemDesctription, Database database, float StorageSpaceTaken)
         {
             Item item = new(0,ItemName,ItemDesctription);
             CombinedItemLocation combinedItemLocation = new(0,location,item);
             if (combinedItemLocation != null)
             {
-                database.AddItem(combinedItemLocation.item);
-                database.AddCombinedLocation(combinedItemLocation.Location.LocationId, combinedItemLocation.item.Id);
+                int itemId = database.AddItem(item);
+                database.AddCombinedLocation(combinedItemLocation.Location.LocationId, itemId);
                 return "Succes fully added new Item";
             }
             return "Failed to add the item";
@@ -39,5 +39,6 @@ namespace AvaloniaMVVMERPSystem.Models
             database.AddLocation(location);
             return "Succes fully added new Location";
         }
+        
     }
 }

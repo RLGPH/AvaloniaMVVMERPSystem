@@ -140,7 +140,7 @@ namespace AvaloniaMVVMERPSystem.ViewModels
                     return;
                 }
 
-                Status = modCommands.AddInventory(SelectedLocation, ItemName, ItemDescription, database);
+                Status = modCommands.AddInventory(SelectedLocation, ItemName, ItemDescription, database, StorageSpaceNeeded);
             });
 
             AddLocation = ReactiveCommand.Create(() => { IsPopupOpenLocation = true; ContinueOption = false; });

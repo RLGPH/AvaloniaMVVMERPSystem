@@ -18,7 +18,6 @@ namespace AvaloniaMVVMERPSystem.ViewModels
         private string _employeePassword;
         private string _adminPassword;
         private int _employeeId;
-        private bool _isAdminOrMod;
 
         public string FirstName
         {
@@ -50,15 +49,6 @@ namespace AvaloniaMVVMERPSystem.ViewModels
             set => this.RaiseAndSetIfChanged(ref _employeeId, value);
         }
 
-
-        public bool IsAdminOrMod
-        {
-            get => _isAdminOrMod;
-            set => this.RaiseAndSetIfChanged(ref _isAdminOrMod, value);
-        }
-
-
-
         public ReactiveCommand<Unit, Unit> LoginCommand { get; }
 
         public ReactiveCommand<Unit, Unit> BackToNormlogin { get; }
@@ -68,8 +58,6 @@ namespace AvaloniaMVVMERPSystem.ViewModels
             _MainWindowViewModel = mainWindowViewModel;
             _Database = database;
             _modelCommands = modCommands;
-
-            IsAdminOrMod = true;
 
             LoginCommand = ReactiveCommand.Create(() => modCommands.LoginAuthentication(EmployeeId, FirstName, LastName, EmployeePassword, AdminPassword, mainWindowViewModel, database, modCommands));
 

@@ -23,9 +23,9 @@ namespace AvaloniaMVVMERPSystem.Models
         {
             _MainWindowViewModel.SwitchViewModel(new EmployeeLoginViewModel(_MainWindowViewModel, _Database, modelCommands));
         }
-        public void LoginAsEmployee()
+        public void LoginAsEmployee(Database dataBase, MainWindowViewModel _MainWindowViewModel, ModelCommands modelCommands, Employee employee)
         {
-
+            _MainWindowViewModel.SwitchViewModel(new EmployeeMainMenuViewModel(_MainWindowViewModel, dataBase, modelCommands, employee));
         }
         public void SwitchToAdminLogin(Database _database, MainWindowViewModel _MainWindowViewModel, ModelCommands modelCommands)
         {

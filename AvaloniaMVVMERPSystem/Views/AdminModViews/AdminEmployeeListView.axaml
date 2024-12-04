@@ -20,24 +20,22 @@
 			<ListBox ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}">
 				<ListBox.ItemTemplate>
 				  <DataTemplate>
-					  <Border BorderThickness="3" BorderBrush="Black" CornerRadius="10">
-						<WrapPanel Orientation="Horizontal">
-							<TextBlock Text="Firstname:" Margin="5"/>
-							<TextBlock Text="{Binding FirstName}" Margin="0,5,5,0"/>
+					  <WrapPanel Orientation="Horizontal">
+						  <TextBlock Text="Firstname:" Margin="5"/>
+						  <TextBlock Text="{Binding FirstName}" Margin="0,5,5,0"/>
 
-							<TextBlock Text="LastName:" Margin="5"/>
-							<TextBlock Text="{Binding LastName}" Margin="0,5,5,0"/>
+						  <TextBlock Text="LastName:" Margin="5"/>
+						  <TextBlock Text="{Binding LastName}" Margin="0,5,5,0"/>
 
-							<TextBlock Text="IsMod:" Margin="5"/>
-							<TextBlock Text="{Binding _moderator.IsMod}" Margin="0,5,5,0"/>
+						  <TextBlock Text="IsMod:" Margin="5"/>
+						  <TextBlock Text="{Binding _moderator.IsMod}" Margin="0,5,5,0"/>
 
-							<TextBlock Text="IsAdmin:" Margin="5"/>
-							<TextBlock Text="{Binding _admin.IsAdmin}" Margin="0,5,5,0"/>
+						  <TextBlock Text="IsAdmin:" Margin="5"/>
+						  <TextBlock Text="{Binding _admin.IsAdmin}" Margin="0,5,5,0"/>
 
-							<TextBlock Text="ID:" Margin="5"/>
-							<TextBlock Text="{Binding EmployeeId}" Margin="0,5,5,0"/>
-						</WrapPanel>
-					  </Border>
+						  <TextBlock Text="ID:" Margin="5"/>
+						  <TextBlock Text="{Binding EmployeeId}" Margin="0,5,5,0"/>
+					  </WrapPanel>
 					</DataTemplate>
 				</ListBox.ItemTemplate>
 				<!--Test Data-->

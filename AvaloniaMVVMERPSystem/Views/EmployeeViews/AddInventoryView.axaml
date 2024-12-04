@@ -87,11 +87,11 @@
 
 		<StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
 			
-			<Button Content="Add Location" Margin="5" Command="{Binding AddLocation}"/>
-			<Button Content="Check" Margin="5" Command="{Binding Check}"/>
-			<Button Content="Add Item" Margin="5" Command="{Binding AddItem}"/>
-			<Button Content="Back" Margin="5" Command="{Binding Back}"/>
-			<Button Content="Back as Admin/Mod" Margin="5" Command="{Binding BackAdmin}"/>
+			<Button Content="Add Location" Margin="5" Background="Green" Width="150" Command="{Binding AddLocation}"/>
+			<Button Content="Add Item" Margin="5" Background="Green" Width="150" Command="{Binding AddItem}"/>
+			<Button Content="Check" Margin="5" Width="150" Command="{Binding Check}"/>
+			<Button Content="Back" Margin="5" Background="Red" Width="150" Command="{Binding Back}"/>
+			<Button Content="Back as Admin/Mod" Margin="5" Background="Red" Command="{Binding BackAdmin}"/>
 			
 		</StackPanel>
 		

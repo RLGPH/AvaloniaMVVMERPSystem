@@ -225,8 +225,12 @@ AS
 BEGIN
     INSERT INTO Item (ItemName, ItemDescription)
     VALUES (@ItemName, @Description);
+
+    -- Return the ID of the newly created item
+    SELECT SCOPE_IDENTITY() AS NewItemId;
 END;
 GO
+
 
 CREATE PROCEDURE AddCombinedLocation
     @LocationId INT,
