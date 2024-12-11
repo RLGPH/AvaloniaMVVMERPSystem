@@ -41,16 +41,12 @@
 
 					<!-- Password Fields -->
 					<StackPanel Margin="5">
-						<TextBlock Text="Password" Margin="4"/>
+						<TextBlock Text="Old Password" Width="200" Margin="4"/>
+						<TextBox Text="{Binding OldPassword}" Watermark="e.g., Pass123" Width="200" Margin="4"/>
+						<TextBlock Text="Password new" Margin="4"/>
 						<TextBox Text="{Binding Password}" Watermark="e.g., Pass1234" Width="200" Margin="4"/>
-						<TextBlock Text="Re-enter password" Margin="4"/>
+						<TextBlock Text="Re-enter new password" Margin="4"/>
 						<TextBox Text="{Binding ReenterPassword}" Watermark="e.g., Pass1234" Width="200" Margin="4"/>
-					</StackPanel>
-
-					<!-- CPR Number -->
-					<StackPanel Margin="5">
-						<TextBlock Text="CPR Number" Margin="4"/>
-						<TextBox Text="{Binding CPRNumber}" Watermark="121212-1212" Margin="4" IsEnabled="false"/>
 					</StackPanel>
 
 					<!-- Postal Code -->
@@ -131,9 +127,11 @@
 
 					<!-- Admin Password -->
 					<StackPanel Margin="5">
-						<TextBlock Text="Extra Password" Margin="4"/>
+						<TextBlock Text="Old Admin Password" Margin="4"/>
+						<TextBox Text="{Binding OldAdminPassword}" Watermark="e.g., AdminPass123!" Width="200" Margin="4"/>
+						<TextBlock Text="New Admin Password" Margin="4"/>
 						<TextBox Text="{Binding AdminPassword}" Watermark="e.g., AdminPass123!" Width="200" Margin="4"/>
-						<TextBlock Text="Re-enter Extra Password" Margin="4"/>
+						<TextBlock Text="Re-enter New Admin Password" Margin="4"/>
 						<TextBox Text="{Binding ReenterAdminPassword}" Watermark="e.g., AdminPass123!" Width="200" Margin="4"/>
 					</StackPanel>
 				</WrapPanel>

@@ -22,12 +22,16 @@ namespace AvaloniaMVVMERPSystem.Models
 
         public string AddInventory(Location location, string ItemName, string ItemDesctription, Database database, float StorageSpaceTaken)
         {
+            location.StorageSpaceLeft = location.StorageSpaceLeft - StorageSpaceTaken;
+
             Item item = new(0,ItemName,ItemDesctription);
             CombinedItemLocation combinedItemLocation = new(0,location,item);
             if (combinedItemLocation != null)
             {
                 int itemId = database.AddItem(item);
                 database.AddCombinedLocation(combinedItemLocation.Location.LocationId, itemId);
+                database.EditLocation(location);
+
                 return "Succes fully added new Item";
             }
             return "Failed to add the item";

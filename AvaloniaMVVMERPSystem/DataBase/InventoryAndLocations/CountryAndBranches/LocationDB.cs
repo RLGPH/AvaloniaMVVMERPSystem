@@ -21,7 +21,7 @@ namespace AvaloniaMVVMERPSystem.DataBase
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand("AddLocation", conn))
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@LocationName", location.LocationName);
                     cmd.Parameters.AddWithValue("@LCountry", location.LCountry);
@@ -66,6 +66,28 @@ namespace AvaloniaMVVMERPSystem.DataBase
             }
 
             return locations;
+        }
+
+        public void EditLocation(Classes.Location location)
+        {
+            using (SqlConnection conn = GetConnection()) 
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("EditLocation", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@LocationId", location.LocationId);
+                    cmd.Parameters.AddWithValue("@LocationName", location.LocationName);
+                    cmd.Parameters.AddWithValue("@LCountry", location.LCountry);
+                    cmd.Parameters.AddWithValue("@LStreet", location.LStreet);
+                    cmd.Parameters.AddWithValue("@LCity", location.LCity);
+                    cmd.Parameters.AddWithValue("@LZipCode", location.LZipCode);
+                    cmd.Parameters.AddWithValue("@StorageSpaceLeft", location.StorageSpaceLeft);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
     }
 }
