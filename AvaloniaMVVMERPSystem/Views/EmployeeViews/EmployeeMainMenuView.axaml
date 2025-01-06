@@ -33,11 +33,11 @@
 			</ListBox>
 		</StackPanel>
 		<StackPanel Grid.Column="2" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="20">
-			<Button Content="Edit Account" Margin="10" Width="180"/>
-			<Button Content="Added Inventory History" Margin="10" Width="180"/>
-			<Button Content="Edit inventory" Margin="10" Width="180"/>
-			<Button Content="+Add Inventory" Background="Green" Margin="10" Width="180"/>
-			<Button Content="Logout" Background="Red" Margin="10" Width="180"/>
+			<Button Content="Edit Account" Command="{Binding EditAccount}" Margin="10" Width="180"/>
+			<Button Content="Added Inventory History" Command="{Binding InventoryHistory}" Margin="10" Width="180"/>
+			<Button Content="Edit inventory" Command="{Binding EditInventory}" Margin="10" Width="180"/>
+			<Button Content="+Add Inventory" Command="{Binding AddToInventory}" Background="Green" Margin="10" Width="180"/>
+			<Button Content="Logout" Command="{Binding BackToNormlogin}" Background="Red" Margin="10" Width="180"/>
 		</StackPanel>
 	</Grid>
 </UserControl>

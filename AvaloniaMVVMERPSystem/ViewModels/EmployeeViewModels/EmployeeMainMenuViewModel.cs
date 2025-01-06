@@ -18,6 +18,10 @@ namespace AvaloniaMVVMERPSystem.ViewModels
         private ModelCommands _ModelCommands;
         private Employee _Employee;
 
+        public ReactiveCommand<Unit, Unit> EditAccount { get; }
+        public ReactiveCommand<Unit, Unit> InventoryHistory { get; }
+        public ReactiveCommand<Unit, Unit> EditInventory { get; }
+        public ReactiveCommand<Unit, Unit> AddToInventory { get; }
         public ReactiveCommand<Unit, Unit> BackToNormlogin { get; }
 
         public EmployeeMainMenuViewModel(MainWindowViewModel mainWindowViewModel, Database database, ModelCommands modCommands, Employee employee)
@@ -26,6 +30,8 @@ namespace AvaloniaMVVMERPSystem.ViewModels
             _Database = database;
             _ModelCommands = modCommands;
             _Employee = employee;
+
+            AddToInventory = ReactiveCommand.Create(() => modCommands.SwitchToAddInventory(database, mainWindowViewModel, modCommands, employee));
 
             BackToNormlogin = ReactiveCommand.Create(() => modCommands.SwitchToNormLogin(database, mainWindowViewModel, modCommands));
         }
