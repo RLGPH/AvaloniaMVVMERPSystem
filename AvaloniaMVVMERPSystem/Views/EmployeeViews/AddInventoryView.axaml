@@ -7,7 +7,7 @@
 			 xmlns:views="using:AvaloniaMVVMERPSystem.ViewModels"
 			 x:DataType="views:AddInventoryViewModel">
 	
-	<Grid ShowGridLines="True">
+	<Grid ShowGridLines="False">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*"/>
 			<RowDefinition Height="*"/>

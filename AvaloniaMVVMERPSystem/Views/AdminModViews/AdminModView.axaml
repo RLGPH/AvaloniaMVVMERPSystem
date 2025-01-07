@@ -8,7 +8,7 @@
 			 x:DataType="views:AdminModViewModel">
 
 
-	<Grid ShowGridLines="True">
+	<Grid ShowGridLines="False">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*"/>
 			<RowDefinition Height="*"/>

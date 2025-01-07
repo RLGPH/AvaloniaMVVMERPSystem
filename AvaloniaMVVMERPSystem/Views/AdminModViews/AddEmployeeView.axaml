@@ -7,7 +7,7 @@
 			 xmlns:views="using:AvaloniaMVVMERPSystem.ViewModels"
 			 x:DataType="views:AddEmployeeViewModel">
 
-	<Grid ShowGridLines="True">
+	<Grid ShowGridLines="False">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*"/>
 			<RowDefinition Height="*"/>
