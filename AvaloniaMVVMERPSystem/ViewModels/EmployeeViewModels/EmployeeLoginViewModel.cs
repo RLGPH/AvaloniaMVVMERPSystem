@@ -10,7 +10,7 @@ namespace AvaloniaMVVMERPSystem.ViewModels
         private readonly MainWindowViewModel _MainWindowViewModel;
         private readonly Database _Database;
         private ModelCommands _ModelCommands;
-        /*
+        
         private string _firstName;
         private string _lastName;
         private string _employeePassword;
@@ -39,10 +39,9 @@ namespace AvaloniaMVVMERPSystem.ViewModels
             get => _employeeId;
             set => this.RaiseAndSetIfChanged(ref _employeeId, value);
         }
-        */
 
-        ReactiveCommand<Unit,Unit> EmployeeLogin {  get; set; }
-        ReactiveCommand<Unit, Unit> BackToNormlogin { get; set; }
+        public ReactiveCommand<Unit,Unit> employeeLogin {  get; set; }
+        public ReactiveCommand<Unit, Unit> backToNormlogin { get; set; }
 
         public EmployeeLoginViewModel(MainWindowViewModel mainWindowViewModel, Database database, ModelCommands modCommands)
         {
@@ -50,9 +49,9 @@ namespace AvaloniaMVVMERPSystem.ViewModels
             _Database = database;
             _ModelCommands = modCommands;
 
-            //EmployeeLogin = ReactiveCommand.Create(() => modCommands.EmployeeLogin(database,mainWindowViewModel);
+            employeeLogin = ReactiveCommand.Create(() => modCommands.EmployeeLogin(database, mainWindowViewModel, modCommands,FirstName, LastName, EmployeePassword, EmployeeId));
 
-            BackToNormlogin = ReactiveCommand.Create(() => modCommands.SwitchToNormLogin(database, mainWindowViewModel, modCommands));
+            backToNormlogin = ReactiveCommand.Create(() => modCommands.SwitchToNormLogin(database, mainWindowViewModel, modCommands));
         }
     }
 }

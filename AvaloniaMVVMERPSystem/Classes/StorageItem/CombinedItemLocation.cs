@@ -13,11 +13,11 @@ namespace AvaloniaMVVMERPSystem.Classes
         public Location Location { get; set; }
         public Item item { get; set; }
         
-        public CombinedItemLocation(int cominedID, Location location, Item item)
+        public CombinedItemLocation(int cominedID, Location location, Item thing)
         {
             CominedID = cominedID;
             Location = location;
-            item = item;
+            item = thing;
         }
     }
 }

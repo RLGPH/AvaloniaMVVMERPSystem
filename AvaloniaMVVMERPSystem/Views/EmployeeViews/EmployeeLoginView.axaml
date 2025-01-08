@@ -14,20 +14,20 @@
 				<TextBlock FontSize="17" Text="Employee Login" Margin="10"/>
 
 				<TextBlock Text="FirstName"/>
-				<TextBox Margin="5"/>
+				<TextBox Margin="5" Text="{Binding FirstName}"/>
 				
 				<TextBlock Text="LastName"/>
-				<TextBox Margin="5"/>
+				<TextBox Margin="5" Text="{Binding LastName}"/>
 
 				<TextBlock Text="Password"/>
-				<TextBox Margin="5"/>
+				<TextBox Margin="5" Text="{Binding EmployeePassword}"/>
 
 				<TextBlock Text="EmplyeeId"/>
-				<TextBox Margin="5"/>
+				<TextBox Margin="5" Text="{Binding EmployeeId}"/>
 
 				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-					<Button Content="Login" Margin="0,0,20,0" Command="{Binding EmployeeLogin}"/>
-					<Button Content="Cancel" Command="{Binding BackToNormlogin}"/>
+					<Button Content="Login" Margin="0,0,20,0" Command="{Binding employeeLogin}"/>
+					<Button Content="Cancel" Command="{Binding backToNormlogin}"/>
 				</StackPanel>
 			</StackPanel>
 		</Border>

@@ -56,7 +56,7 @@
 				</Border>
 				<StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="20">
 					<Button Content="Rgristor" Command="" Margin="0,0,10,0"/>
-					<Button Content="Cancel" Command="{Binding BackToNormlogin}"/>
+					<Button Content="Cancel" Command="{Binding backToNormlogin}"/>
 				</StackPanel>
 			</StackPanel>
 		</Border>

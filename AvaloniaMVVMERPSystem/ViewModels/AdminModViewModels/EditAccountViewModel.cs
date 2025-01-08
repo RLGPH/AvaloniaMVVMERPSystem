@@ -150,9 +150,19 @@ namespace AvaloniaMVVMERPSystem.ViewModels
             set => this.RaiseAndSetIfChanged(ref _reenterAdminPassword, value);
         }
 
+        private bool _isPopupOpen;
+        public bool IsPopupOpen
+        {
+            get => _isPopupOpen;
+            set => this.RaiseAndSetIfChanged(ref _isPopupOpen, value);
+        }
+
         // Commands
-        public ReactiveCommand<Unit, Unit> BackToMenu { get; }
+        public ReactiveCommand<Unit, Unit> BackAsAdmin { get; }
         public ReactiveCommand<Unit, Unit> EditEmployee { get; }
+        public ReactiveCommand<Unit, Unit> BackAsEmployee {  get; }
+        public ReactiveCommand<Unit, Unit> ContinueCommand { get; }
+        public ReactiveCommand<Unit, Unit> CancelCommand { get; }
 
         public EditAccountViewModel(MainWindowViewModel mainWindowViewModel, Database database, ModelCommands modCommands, Employee employee, Employee editEmployee)
         {
@@ -162,7 +172,8 @@ namespace AvaloniaMVVMERPSystem.ViewModels
             _employee = employee;
 
             // Initialize commands
-            BackToMenu = ReactiveCommand.Create(() => modCommands.SwitchToAdminMenu(database, mainWindowViewModel, modCommands, employee));
+            BackAsAdmin = ReactiveCommand.Create(() => { IsPopupOpen = true; });
+
             EditEmployee = ReactiveCommand.Create(() => 
             {
                 PersonaLInfo personaLInfo = new(editEmployee.PInfo.PersonalInfoId,PersonalMail,PersonalPhone,Address,
@@ -180,6 +191,17 @@ namespace AvaloniaMVVMERPSystem.ViewModels
                     modCommands.EditAccount(ChangedEm, employee, database, mainWindowViewModel, modCommands);
             });
 
+            BackAsEmployee = ReactiveCommand.Create(() => modCommands.LoginAsEmployee(database, _MainWindowViewModel, modCommands, employee));
+            ContinueCommand = ReactiveCommand.Create(() =>
+            {
+                if (AdminPassword == ReenterAdminPassword && PasswordHasher.VerifyPassword(AdminPassword, employee.AdminPassword))
+                {
+                    modCommands.SwitchToAdminMenu(database, mainWindowViewModel, modCommands, employee);
+                    IsPopupOpen = false;
+                }
+            });
+
+            CancelCommand = ReactiveCommand.Create(() => { IsPopupOpen = false; });
             // Load initial data
             FirstName = editEmployee.FirstName;
             LastName = editEmployee.LastName;

@@ -12,12 +12,12 @@ namespace AvaloniaMVVMERPSystem.Models
 { 
     public partial class ModelCommands
     {
-        public void EmployeeLogin(Database database, MainWindowViewModel mainWindowViewModel ,string FirstName, string LastName, string Password,int EmployeeId)
+        public void EmployeeLogin(Database database, MainWindowViewModel mainWindowViewModel, ModelCommands modelCommands,string FirstName, string LastName, string Password,int EmployeeId)
         {
-            Employee employee = database.GetEmployee(EmployeeId);
-            if (employee.FirstName == FirstName && employee.LastName == LastName && PasswordHasher.VerifyPassword(Password,employee.EmployeePassword)) 
+            Employee GetEmployee = database.GetEmployee(EmployeeId);
+            if (GetEmployee.FirstName == FirstName && GetEmployee.LastName == LastName && PasswordHasher.VerifyPassword(Password,GetEmployee.EmployeePassword)) 
             {
-                //LoginAsEmployee(database,mainWindowViewModel);
+                LoginAsEmployee(database, mainWindowViewModel, modelCommands, GetEmployee);
             }
         }
     }
