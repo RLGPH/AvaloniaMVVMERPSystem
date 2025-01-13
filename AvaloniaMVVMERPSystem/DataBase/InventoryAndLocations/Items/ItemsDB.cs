@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AvaloniaMVVMERPSystem.Classes;
+using Tmds.DBus.Protocol;
 
 namespace AvaloniaMVVMERPSystem.DataBase
 {
@@ -43,6 +46,52 @@ namespace AvaloniaMVVMERPSystem.DataBase
                     cmd.Parameters.AddWithValue("@ItemId", ItemId);
 
                     cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public ObservableCollection<CombinedItemLocation> GetAllItems()
+        {
+            var combinedList = new ObservableCollection<CombinedItemLocation>();
+
+            using (SqlConnection conn = GetConnection()) 
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("GetItems",conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader()) 
+                    {
+                        if (reader.Read()) 
+                        {
+                            var items = new Item(
+                                id: reader.GetInt32(reader.GetOrdinal("ItemId")),
+                                name: reader.GetString(reader.GetOrdinal("ItemName")),
+                                description: reader.GetString(reader.GetOrdinal("ItemDescription"))
+                                );
+
+                            var locations = new Location(
+                                locationId: reader.GetInt32(reader.GetOrdinal("LocationId")),
+                                locationName: reader.GetString(reader.GetOrdinal("LocationName")),
+                                lCountry: reader.GetString(reader.GetOrdinal("LCountry")),
+                                lCity: reader.GetString(reader.GetOrdinal("LCity")),
+                                lStreet: reader.GetString(reader.GetOrdinal("LStreet")),
+                                lZipCode: reader.GetString(reader.GetOrdinal("LZipCode")),
+                                storageSpaceLeft: reader.GetFloat(reader.GetOrdinal("StorageSpaceLeft"))
+                                );
+
+                            var combined = new CombinedItemLocation(
+                                cominedID: reader.GetInt32(reader.GetOrdinal("CombinedId")),
+                                location: locations,
+                                thing: items
+                                );
+                            combinedList.Add( combined );
+                        }
+                    }
+                    conn.Close();
+                    return combinedList;
                 }
             }
         }

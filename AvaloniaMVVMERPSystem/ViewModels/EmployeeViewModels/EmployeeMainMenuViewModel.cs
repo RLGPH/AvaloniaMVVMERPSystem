@@ -36,6 +36,8 @@ namespace AvaloniaMVVMERPSystem.ViewModels
             BackToNormlogin = ReactiveCommand.Create(() => modCommands.SwitchToNormLogin(database, mainWindowViewModel, modCommands));
 
             EditAccount = ReactiveCommand.Create(() => modCommands.SwitchToEditAccountA(_Database, _Employee, mainWindowViewModel,modCommands, employee));
+
+            EditInventory = ReactiveCommand.Create(() => modCommands.SwitchToEditInventory(database, mainWindowViewModel, modCommands, employee));
         }
     }
 }

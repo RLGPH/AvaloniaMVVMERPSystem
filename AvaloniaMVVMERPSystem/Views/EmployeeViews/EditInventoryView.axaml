@@ -1,0 +1,123 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaMVVMERPSystem.Views.EditInventoryView"
+			 xmlns:views="using:AvaloniaMVVMERPSystem.ViewModels"
+			 x:DataType="views:EditInventoryViewModel">
+	<Grid ShowGridLines="True">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+			<Button Content="Add Location" Margin="5" Background="Green" Width="150" Command="{Binding AddLocation}"/>
+			<Button Content="Add Item" Margin="5" Background="Green" Width="150" Command="{Binding AddItem}"/>
+			<Button Content="Check" Margin="5" Width="150" Command="{Binding Check}"/>
+			<Button Content="Back" Margin="5" Background="Red" Width="150" Command="{Binding Back}"/>
+			<Button Content="Back as Admin/Mod" Margin="5" Background="Red" Command="{Binding BackAdmin}"/>
+
+		</StackPanel>
+		
+		<Popup IsOpen="{Binding IsPopupOpen}" PlacementMode="Center">
+			<Border Background="Black" BorderThickness="2" BorderBrush="DarkGray" Padding="20" Width="300">
+				<StackPanel>
+					<TextBlock Text="Enter Admin Password" Margin="0,0,0,5"/>
+					<TextBox Watermark="Pass123" Text="{Binding AdminPassword}" Margin="0,0,0,10"/>
+
+					<TextBlock Text="Re-enter Admin Password" Margin="0,0,0,5"/>
+					<TextBox Watermark="Pass123" Text="{Binding ReenteredPassword}" Margin="0,0,0,10"/>
+
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+						<Button Content="Continue" Background="Green" Command="{Binding ContinueCommand}" Margin="5"/>
+						<Button Content="Cancel" Background="Red" Command="{Binding CancelCommand}" Margin="5"/>
+					</StackPanel>
+				</StackPanel>
+			</Border>
+		</Popup>
+		
+		<Border BorderBrush="Gray" BorderThickness="5" CornerRadius="10" Grid.Column="1" Grid.RowSpan="2">
+			<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="400">
+				<StackPanel Grid.Column="1" Grid.RowSpan="2">
+					<TextBlock Text="Add To Inventory" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center"/>
+					<WrapPanel>
+						<!-- Item Name -->
+						<StackPanel Orientation="Horizontal" Margin="10">
+							<TextBlock Text="Item Name:" Margin="5,10,5,5"/>
+							<TextBox Watermark="Magic Screws!!!" MinWidth="150" Margin="0,5,0,0" Text="{Binding ItemName}"/>
+						</StackPanel>
+
+						<!-- Item Description -->
+						<StackPanel Orientation="Horizontal" Margin="10">
+							<TextBlock Text="Item Description:" Margin="5,10,5,5"/>
+							<TextBox Watermark="Description" MinWidth="200" MinHeight="100" Margin="0,5,0,0" Text="{Binding ItemDescription}"/>
+						</StackPanel>
+
+						<!-- Storage Space Needed -->
+						<StackPanel Orientation="Horizontal" Margin="10">
+							<TextBlock Text="Storage space needed:" Margin="5,10,5,5"/>
+							<TextBox Watermark="20" Width="100" Text="{Binding StorageSpaceNeeded}"/>
+						</StackPanel>
+
+						<!-- Location Selector -->
+						<StackPanel Orientation="Horizontal" Margin="10">
+							<TextBlock Text="Select Location:" Margin="5,10,5,5"/>
+							<ComboBox MinWidth="100" ItemsSource="{Binding LocationList}" SelectedItem="{Binding SelectedLocation}">
+								<ComboBox.ItemTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding LocationName}"/>
+									</DataTemplate>
+								</ComboBox.ItemTemplate>
+							</ComboBox>
+						</StackPanel>
+
+						<!-- Location Details -->
+						<StackPanel Orientation="Horizontal" Margin="10">
+							<TextBlock Text="Country:" Margin="5,10,5,5"/>
+							<TextBlock Text="{Binding LCountry}" Margin="0,10,5,5"/>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal" Margin="10">
+							<TextBlock Text="City:" Margin="5,10,5,5"/>
+							<TextBlock Text="{Binding LCity}" Margin="0,10,5,5"/>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal" Margin="10">
+							<TextBlock Text="Street:" Margin="5,10,5,5"/>
+							<TextBlock Text="{Binding LStreet}" Margin="0,10,5,5"/>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal" Margin="10">
+							<TextBlock Text="Zip Code:" Margin="5,10,5,5"/>
+							<TextBlock Text="{Binding LZipCode}" Margin="0,10,5,5"/>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal" Margin="10">
+							<TextBlock Text="Storage Space Left:" Margin="5,10,5,5"/>
+							<TextBlock Text="{Binding StorageSpaceLeft}" Margin="0,10,5,5"/>
+						</StackPanel>
+
+					</WrapPanel>
+				</StackPanel>
+			</ScrollViewer>
+		</Border>
+		<Border BorderThickness="3" BorderBrush="Gray" CornerRadius="10">
+			<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="400">
+				<ListBox Items="{Binding CombinedItemLocations}">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal" Margin="5">
+								<TextBlock Text="{Binding CominedID}" Margin="5"/>
+								<TextBlock Text="{Binding Location.LocationName}" Margin="5"/>
+								<TextBlock Text="{Binding item.Name}" Margin="5"/>
+							</StackPanel>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</ScrollViewer>
+		</Border>
+	</Grid>
+</UserControl>

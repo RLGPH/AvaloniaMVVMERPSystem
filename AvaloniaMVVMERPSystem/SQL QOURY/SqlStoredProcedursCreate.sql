@@ -255,4 +255,25 @@ BEGIN
     VALUES (@LocationName, @LCountry, @LStreet, @LCity, @LZipCode, @StorageSpaceLeft);
 END;
 
-
+CREATE PROCEDURE GetItems
+AS
+BEGIN
+    SELECT 
+        cil.CombinedID AS CombinedId,
+        l.LocationId,
+        l.LocationName,
+        l.LCountry,
+        l.LCity,
+        l.LStreet,
+        l.LZipCode,
+        l.StorageSpaceLeft,
+        i.Id AS ItemId,
+        i.ItemName,
+        i.ItemDescription
+    FROM 
+        CombinedItemLocation cil
+    INNER JOIN 
+        Location l ON cil.LocationId = l.LocationId
+    INNER JOIN 
+        Item i ON cil.ItemId = i.Id
+END;

@@ -47,5 +47,9 @@ namespace AvaloniaMVVMERPSystem.Models
         {
             _mainWindowViewModel.SwitchViewModel(new AddInventoryViewModel(_mainWindowViewModel,_dataBase, modelCommands, _employee));
         }
+        public void SwitchToEditInventory(Database _dataBase, MainWindowViewModel _mainViewModel, ModelCommands modelCommands, Employee _employee)
+        {
+            _mainViewModel.SwitchViewModel(new EditInventoryViewModel(_mainViewModel,_dataBase, modelCommands, _employee));
+        }
     }
 }
