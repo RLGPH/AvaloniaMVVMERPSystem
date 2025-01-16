@@ -57,10 +57,10 @@ namespace AvaloniaMVVMERPSystem.DataBase
             using (SqlConnection conn = GetConnection()) 
             {
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand("GetItems",conn))
+                using (SqlCommand cmd = new SqlCommand("GetItems", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    conn.Open();
+                    
 
                     using (SqlDataReader reader = cmd.ExecuteReader()) 
                     {
@@ -79,8 +79,9 @@ namespace AvaloniaMVVMERPSystem.DataBase
                                 lCity: reader.GetString(reader.GetOrdinal("LCity")),
                                 lStreet: reader.GetString(reader.GetOrdinal("LStreet")),
                                 lZipCode: reader.GetString(reader.GetOrdinal("LZipCode")),
-                                storageSpaceLeft: reader.GetFloat(reader.GetOrdinal("StorageSpaceLeft"))
-                                );
+                                storageSpaceLeft: (float)reader.GetDouble(reader.GetOrdinal("StorageSpaceLeft")) // Explicit conversion
+                            );
+
 
                             var combined = new CombinedItemLocation(
                                 cominedID: reader.GetInt32(reader.GetOrdinal("CombinedId")),
@@ -93,6 +94,23 @@ namespace AvaloniaMVVMERPSystem.DataBase
                     conn.Close();
                     return combinedList;
                 }
+            }
+        }
+
+        public void UpdateItem(Item item)
+        {
+            using (SqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("UpdateItem", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("ItemId", item.Id);
+                    cmd.Parameters.AddWithValue("@ItemName", item.Name);
+                    cmd.Parameters.AddWithValue("@Description", item.Description);
+                }
+                conn.Close();
             }
         }
     }

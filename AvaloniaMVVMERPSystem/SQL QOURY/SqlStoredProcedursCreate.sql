@@ -162,6 +162,7 @@ BEGIN
     END CATCH;
 END;
 GO
+
 CREATE PROCEDURE GetAllEmployees
 AS
 BEGIN
@@ -254,10 +255,12 @@ BEGIN
     INSERT INTO Location (LocationName, LCountry, LStreet, LCity, LZipCode, StorageSpaceLeft)
     VALUES (@LocationName, @LCountry, @LStreet, @LCity, @LZipCode, @StorageSpaceLeft);
 END;
+GO
 
 CREATE PROCEDURE GetItems
 AS
 BEGIN
+    SET NOCOUNT ON;
     SELECT 
         cil.CombinedID AS CombinedId,
         l.LocationId,
@@ -276,4 +279,19 @@ BEGIN
         Location l ON cil.LocationId = l.LocationId
     INNER JOIN 
         Item i ON cil.ItemId = i.Id
+END;
+GO
+
+CREATE PROCEDURE UpdateItem
+    @ItemId INT,
+    @ItemName VARCHAR,
+    @ItemDescription VARCHAR
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE Item
+    SET ItemName = @ItemName,
+        ItemDescription = @ItemDescription
+    WHERE Id = @ItemId;
 END;

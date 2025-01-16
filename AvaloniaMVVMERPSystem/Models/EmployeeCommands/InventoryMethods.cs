@@ -1,13 +1,7 @@
 ﻿using AvaloniaMVVMERPSystem.Classes;
 using AvaloniaMVVMERPSystem.DataBase;
 using AvaloniaMVVMERPSystem.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AvaloniaMVVMERPSystem.Models
 {
@@ -43,6 +37,28 @@ namespace AvaloniaMVVMERPSystem.Models
             database.AddLocation(location);
             return "Succes fully added new Location";
         }
-        
+
+        public ObservableCollection<CombinedItemLocation>? GetCombinedLocations(Database database)
+        {
+            ObservableCollection<CombinedItemLocation> combinedItems = database.GetAllItems();
+            if (combinedItems.Count > 0)
+            {
+                return combinedItems;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public string UpdateItem(Database database, Item item) 
+        {
+            if(item != null)
+            {
+                database.UpdateItem(item);
+                return "Succesfully Updated Item";
+            }
+            return "Failed to Update Item (Item == null)";
+        }
     }
 }

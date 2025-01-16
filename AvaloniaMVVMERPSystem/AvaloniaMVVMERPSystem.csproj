@@ -10,7 +10,6 @@
 
 	<ItemGroup>
 		<Folder Include="DataBase\UserOrEmplyeeTypeDB\User\" />
-		<Folder Include="Models\Methods for logic\" />
 	</ItemGroup>
 
 	<ItemGroup>

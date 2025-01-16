@@ -103,6 +103,8 @@ namespace AvaloniaMVVMERPSystem.ViewModels
             set => this.RaiseAndSetIfChanged(ref _isPopupOpenLocation, value);
         }
 
+        public ObservableCollection<CombinedItemLocation> combinedItemLocations { get; set; }
+
         //button Commands
         public ReactiveCommand<Unit, Unit> ContinueCommand { get; }
         public ReactiveCommand<Unit, Unit> CancelCommand { get; }
@@ -119,6 +121,8 @@ namespace AvaloniaMVVMERPSystem.ViewModels
             _ModelCommands = modCommands;
             _employee = employee;
             bool ContinueOption = false;
+
+            combinedItemLocations = new(modCommands.GetCombinedLocations(database));
 
             AddItem = ReactiveCommand.Create(() =>
             {

@@ -18,8 +18,8 @@
 
 		<StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
 
-			<Button Content="Add Location" Margin="5" Background="Green" Width="150" Command="{Binding AddLocation}"/>
-			<Button Content="Add Item" Margin="5" Background="Green" Width="150" Command="{Binding AddItem}"/>
+			<Button Content="Open Location" Margin="5" Background="Green" Width="150" Command="{Binding AddLocation}"/>
+			<Button Content="Save Item" Margin="5" Background="Green" Width="150" Command="{Binding AddItem}"/>
 			<Button Content="Check" Margin="5" Width="150" Command="{Binding Check}"/>
 			<Button Content="Back" Margin="5" Background="Red" Width="150" Command="{Binding Back}"/>
 			<Button Content="Back as Admin/Mod" Margin="5" Background="Red" Command="{Binding BackAdmin}"/>
@@ -104,9 +104,9 @@
 				</StackPanel>
 			</ScrollViewer>
 		</Border>
-		<Border BorderThickness="3" BorderBrush="Gray" CornerRadius="10">
+		<Border Height="200">
 			<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="400">
-				<ListBox Items="{Binding CombinedItemLocations}">
+				<ListBox Height="190" ItemsSource="{Binding combinedItemLocations}">
 					<ListBox.ItemTemplate>
 						<DataTemplate>
 							<StackPanel Orientation="Horizontal" Margin="5">
@@ -119,5 +119,6 @@
 				</ListBox>
 			</ScrollViewer>
 		</Border>
+
 	</Grid>
 </UserControl>
