@@ -106,7 +106,8 @@
 		</Border>
 		<Border Height="200">
 			<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="400">
-				<ListBox Height="190" ItemsSource="{Binding combinedItemLocations}">
+				<ListBox Height="190" ItemsSource="{Binding CombinedItemL}"
+				SelectedItem="{Binding SelectedItem}">
 					<ListBox.ItemTemplate>
 						<DataTemplate>
 							<StackPanel Orientation="Horizontal" Margin="5">
@@ -117,6 +118,7 @@
 						</DataTemplate>
 					</ListBox.ItemTemplate>
 				</ListBox>
+
 			</ScrollViewer>
 		</Border>
 

@@ -1,4 +1,5 @@
-﻿using AvaloniaMVVMERPSystem.Classes;
+﻿using Avalonia.Controls;
+using AvaloniaMVVMERPSystem.Classes;
 using AvaloniaMVVMERPSystem.DataBase;
 using AvaloniaMVVMERPSystem.Models;
 using ReactiveUI;
@@ -15,7 +16,7 @@ namespace AvaloniaMVVMERPSystem.ViewModels
     public class EditInventoryViewModel : ViewModelBase
     {
         private readonly Database _Database;
-        private readonly ModelCommands _ModelCommands;    
+        private readonly ModelCommands _ModelCommands;
         private readonly MainWindowViewModel _MainWindowViewModel;
         private readonly Employee _employee;
 
@@ -43,19 +44,16 @@ namespace AvaloniaMVVMERPSystem.ViewModels
             get => _itemName;
             set => this.RaiseAndSetIfChanged(ref _itemName, value);
         }
-
         public string ItemDescription
         {
             get => _itemDescription;
             set => this.RaiseAndSetIfChanged(ref _itemDescription, value);
         }
-
         public float StorageSpaceNeeded
         {
             get => _storageSpaceNeeded;
             set => this.RaiseAndSetIfChanged(ref _storageSpaceNeeded, value);
         }
-
         public ObservableCollection<Classes.Location> LocationList
         {
             get => _locationList;
@@ -103,7 +101,8 @@ namespace AvaloniaMVVMERPSystem.ViewModels
             set => this.RaiseAndSetIfChanged(ref _isPopupOpenLocation, value);
         }
 
-        public ObservableCollection<CombinedItemLocation> combinedItemLocations { get; set; }
+        public ObservableCollection<CombinedItemLocation> CombinedItemL { get; set; }
+
 
         //button Commands
         public ReactiveCommand<Unit, Unit> ContinueCommand { get; }
@@ -114,6 +113,12 @@ namespace AvaloniaMVVMERPSystem.ViewModels
         public ReactiveCommand<Unit, Unit> Check { get; set; }
         public ReactiveCommand<Unit, Unit> BackAdmin { get; set; }
 
+        // Property to hold the selected item
+        public CombinedItemLocation SelectedItem { get; private set; }
+
+        // Command to handle SelectionChanged
+        public ReactiveCommand<SelectionChangedEventArgs, Unit> SelectedItemChanged { get; set; }
+
         public EditInventoryViewModel(MainWindowViewModel mainWindowViewModel, Database database, ModelCommands modCommands, Employee employee)
         {
             _Database = database;
@@ -122,7 +127,7 @@ namespace AvaloniaMVVMERPSystem.ViewModels
             _employee = employee;
             bool ContinueOption = false;
 
-            combinedItemLocations = new(modCommands.GetCombinedLocations(database));
+            CombinedItemL = new(modCommands.GetCombinedLocations(database));
 
             AddItem = ReactiveCommand.Create(() =>
             {
@@ -164,7 +169,16 @@ namespace AvaloniaMVVMERPSystem.ViewModels
 
             CancelCommand = ReactiveCommand.Create(() => { IsPopupOpenLocation = false; IsPopupOpen = false; });
 
+            SelectedItemChanged = ReactiveCommand.Create<SelectionChangedEventArgs>(OnSelectionChanged);
         }
+        private void OnSelectionChanged(SelectionChangedEventArgs e)
+        {
+            // Get the first selected item from the event args
+            if (e.AddedItems.Count > 0 && e.AddedItems[0] is CombinedItemLocation selectedItem)
+            {
+               ItemName = selectedItem.item.Name;
+            }
 
+        }
     }
 }
