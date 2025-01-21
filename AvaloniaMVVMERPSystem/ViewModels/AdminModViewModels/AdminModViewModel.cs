@@ -8,6 +8,7 @@ using System.Reactive;
 
 namespace AvaloniaMVVMERPSystem.ViewModels
 {
+#pragma warning disable
     public class AdminModViewModel : ViewModelBase
     {
         private readonly MainWindowViewModel _MainWindowViewModel;

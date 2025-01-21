@@ -5,6 +5,7 @@ using AvaloniaMVVMERPSystem.Models;
 
 namespace AvaloniaMVVMERPSystem.ViewModels
 {
+#pragma warning disable
     public class EmployeeLoginViewModel : ViewModelBase
     {
         private readonly MainWindowViewModel _MainWindowViewModel;

@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 
 namespace AvaloniaMVVMERPSystem.Models
 {
+#pragma warning disable
     public partial class ModelCommands
     {
         public ObservableCollection<Location> GetLocations() 
@@ -23,6 +24,7 @@ namespace AvaloniaMVVMERPSystem.Models
             if (combinedItemLocation != null)
             {
                 int itemId = database.AddItem(item);
+
                 database.AddCombinedLocation(combinedItemLocation.Location.LocationId, itemId);
                 database.EditLocation(location);
 

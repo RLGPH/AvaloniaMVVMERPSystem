@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace AvaloniaMVVMERPSystem.ViewModels
 {
+#pragma warning disable
     public class AddInventoryViewModel : ViewModelBase
     {
         private readonly MainWindowViewModel _MainWindowViewModel;

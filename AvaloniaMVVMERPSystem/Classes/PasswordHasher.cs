@@ -12,6 +12,7 @@ namespace AvaloniaMVVMERPSystem.Classes
 
         public static string HashPassword(string password)
         {
+#pragma warning disable
             // Generate a salt
             using var rng = new RNGCryptoServiceProvider();
             byte[] salt = new byte[SaltSize];

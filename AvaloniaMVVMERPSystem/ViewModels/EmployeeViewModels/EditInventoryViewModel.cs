@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace AvaloniaMVVMERPSystem.ViewModels
 {
+#pragma warning disable
     public class EditInventoryViewModel : ViewModelBase
     {
         private readonly Database _Database;
@@ -113,8 +114,7 @@ namespace AvaloniaMVVMERPSystem.ViewModels
         public ReactiveCommand<Unit, Unit> Check { get; set; }
         public ReactiveCommand<Unit, Unit> BackAdmin { get; set; }
 
-        // Property to hold the selected item
-        public CombinedItemLocation SelectedItem { get; private set; }
+        
 
         // Command to handle SelectionChanged
         public ReactiveCommand<SelectionChangedEventArgs, Unit> SelectedItemChanged { get; set; }
@@ -168,17 +168,30 @@ namespace AvaloniaMVVMERPSystem.ViewModels
             });
 
             CancelCommand = ReactiveCommand.Create(() => { IsPopupOpenLocation = false; IsPopupOpen = false; });
-
-            SelectedItemChanged = ReactiveCommand.Create<SelectionChangedEventArgs>(OnSelectionChanged);
         }
-        private void OnSelectionChanged(SelectionChangedEventArgs e)
+
+        private CombinedItemLocation _selectedItem;
+        public CombinedItemLocation SelectedItem
         {
-            // Get the first selected item from the event args
-            if (e.AddedItems.Count > 0 && e.AddedItems[0] is CombinedItemLocation selectedItem)
+            get => _selectedItem;
+            set
             {
-               ItemName = selectedItem.item.Name;
+                this.RaiseAndSetIfChanged(ref _selectedItem, value);
+                OnSelectionChanged(value);
             }
-
         }
+
+        private void OnSelectionChanged(CombinedItemLocation selectedItem)
+        {
+            if (selectedItem != null)
+            {
+#pragma warning disable CS8602
+#pragma warning disable CS8601
+                ItemName = selectedItem.item.Name;
+                ItemDescription = selectedItem.item.Description;
+                SelectedLocation = selectedItem.Location;
+            }
+        }
+
     }
 }

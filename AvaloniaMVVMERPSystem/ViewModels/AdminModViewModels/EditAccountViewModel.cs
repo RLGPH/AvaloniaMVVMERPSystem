@@ -8,6 +8,7 @@ using System.Reactive;
 
 namespace AvaloniaMVVMERPSystem.ViewModels
 {
+#pragma warning disable
     public class EditAccountViewModel : ViewModelBase
     {
         private readonly MainWindowViewModel _MainWindowViewModel;

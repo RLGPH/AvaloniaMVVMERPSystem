@@ -26,7 +26,7 @@
 
 		</StackPanel>
 		
-		<Popup IsOpen="{Binding IsPopupOpen}" PlacementMode="Center">
+		<Popup IsOpen="{Binding IsPopupOpen}" Placement="Center">
 			<Border Background="Black" BorderThickness="2" BorderBrush="DarkGray" Padding="20" Width="300">
 				<StackPanel>
 					<TextBlock Text="Enter Admin Password" Margin="0,0,0,5"/>

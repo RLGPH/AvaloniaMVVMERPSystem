@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace AvaloniaMVVMERPSystem.ViewModels
 {
+#pragma warning disable
     public partial class AdminEmployeeListViewModel : ViewModelBase
     {
         private readonly MainWindowViewModel _MainWindowViewModel;

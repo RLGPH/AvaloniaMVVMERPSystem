@@ -8,6 +8,7 @@ using Tmds.DBus.Protocol;
 
 namespace AvaloniaMVVMERPSystem.DataBase
 {
+#pragma warning disable
     public partial class Database
     {
         public void CreateEmployee(Employee employee)
