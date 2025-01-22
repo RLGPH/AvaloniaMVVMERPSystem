@@ -69,7 +69,8 @@ namespace AvaloniaMVVMERPSystem.DataBase
                             var items = new Item(
                                 id: reader.GetInt32(reader.GetOrdinal("ItemId")),
                                 name: reader.GetString(reader.GetOrdinal("ItemName")),
-                                description: reader.GetString(reader.GetOrdinal("ItemDescription"))
+                                description: reader.GetString(reader.GetOrdinal("ItemDescription")),
+                                spaceTakken: (float)reader.GetDouble(reader.GetOrdinal("StorageSpaceTakken"))
                                 );
 
                             var locations = new Location(
@@ -79,7 +80,8 @@ namespace AvaloniaMVVMERPSystem.DataBase
                                 lCity: reader.GetString(reader.GetOrdinal("LCity")),
                                 lStreet: reader.GetString(reader.GetOrdinal("LStreet")),
                                 lZipCode: reader.GetString(reader.GetOrdinal("LZipCode")),
-                                storageSpaceLeft: (float)reader.GetDouble(reader.GetOrdinal("StorageSpaceLeft")) // Explicit conversion
+                                storageSpaceLeft: (float)reader.GetDouble(reader.GetOrdinal("StorageSpaceLeft")),
+                                maxStorageSpace: (float)reader.GetDouble(reader.GetOrdinal("MaxStorageSpace"))
                             );
 
 

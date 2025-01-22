@@ -57,7 +57,8 @@ namespace AvaloniaMVVMERPSystem.DataBase
                                 reader.GetString(reader.GetOrdinal("LCity")),
                                 reader.GetString(reader.GetOrdinal("LStreet")),
                                 reader.GetString(reader.GetOrdinal("LZipCode")),
-                                Convert.ToSingle(reader.GetDouble(reader.GetOrdinal("StorageSpaceLeft")))
+                                Convert.ToSingle(reader.GetDouble(reader.GetOrdinal("StorageSpaceLeft"))),
+                                Convert.ToSingle(reader.GetDouble(reader.GetOrdinal("MaxStorageSpaceLeft")))
                             );
                             locations.Add(location);
                         }

@@ -4,14 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="650"
              x:Class="AvaloniaMVVMERPSystem.Views.RegristorView"
-			 xmlns:views="using:AvaloniaMVVMERPSystem.ViewModels"
-			 x:DataType="views:EmployeeLoginViewModel">
-	
+             xmlns:views="using:AvaloniaMVVMERPSystem.ViewModels"
+             x:DataType="views:RegristorViewModel">
+
 	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,0,0">
 		<Border BorderThickness="5" BorderBrush="Gray" CornerRadius="8">
 			<StackPanel Margin="5">
-				<TextBlock Text="Regristor A User" FontSize="20" Margin="20"/>
-				
+				<TextBlock Text="Register A User" FontSize="20" Margin="20"/>
+
 				<Border BorderThickness="5" BorderBrush="Gray" CornerRadius="8">
 					<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="400">
 						<StackPanel Orientation="Vertical" Margin="20">
@@ -19,47 +19,64 @@
 							<!-- Name Input -->
 							<TextBlock Text="Name" Margin="10"/>
 							<StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-								<TextBox Watermark="First Name" Margin="0,0,20,0" Width="120"/>
-								<TextBox Watermark="Last Name" Width="120"/>
+								<TextBox Watermark="First Name" Margin="0,0,20,0" Width="120"
+                                         Text="{Binding FirstName, Mode=TwoWay}"/>
+								<TextBox Watermark="Last Name" Width="120"
+                                         Text="{Binding LastName, Mode=TwoWay}"/>
 							</StackPanel>
 
 							<!-- CPR Number Input -->
 							<TextBlock Text="CPR Number" Margin="10"/>
-							<TextBox Watermark="CPR Number" Width="260" Margin="0,0,0,10"/>
+							<TextBox Watermark="CPR Number" Width="260" Margin="0,0,0,10"
+                                     Text="{Binding CPRNumber, Mode=TwoWay}"/>
 
 							<!-- Email Input -->
 							<TextBlock Text="Email" Margin="10"/>
-							<TextBox Watermark="Email" Width="260" Margin="0,0,0,10"/>
+							<TextBox Watermark="Email" Width="260" Margin="0,0,0,10"
+                                     Text="{Binding PersonalMail, Mode=TwoWay}"/>
 
 							<!-- Phone Number Input -->
 							<TextBlock Text="Phone Number" Margin="10"/>
-							<TextBox Watermark="Phone Number" Width="260" Margin="0,0,0,10"/>
+							<TextBox Watermark="Phone Number" Width="260" Margin="0,0,0,10"
+                                     Text="{Binding PersonalPhone, Mode=TwoWay}"/>
 
 							<!-- Address Inputs -->
 							<TextBlock Text="Address" Margin="10"/>
 							<StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-								<TextBox Watermark="Street Name" Margin="0,0,20,0" Width="160"/>
-								<TextBox Watermark="House Number" Width="80"/>
+								<TextBox Watermark="Street Name" Margin="0,0,20,0" Width="160"
+                                         Text="{Binding RoadName, Mode=TwoWay}"/>
+								<TextBox Watermark="House Number" Width="80"
+                                         Text="{Binding HouseNumber, Mode=TwoWay}"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-								<TextBox Watermark="Postal Code" Margin="0,0,20,0" Width="120"/>
-								<TextBox Watermark="City" Width="120"/>
+								<TextBox Watermark="Postal Code" Margin="0,0,20,0" Width="120"
+                                         Text="{Binding PostalCode, Mode=TwoWay}"/>
+								<TextBox Watermark="City" Width="120"
+                                         Text="{Binding City, Mode=TwoWay}"/>
 							</StackPanel>
-							<TextBox Watermark="Country" Width="260" Margin="0,0,0,10"/>
+							<TextBox Watermark="Country" Width="260" Margin="0,0,0,10"
+                                     Text="{Binding Country, Mode=TwoWay}"/>
 
 							<!-- Password Input -->
+							<TextBlock Text="Password must be at least 6 characters long" Margin="10"/>
+							<TextBlock Text="Password must contain a special character (e.g., !/@,.?)" Margin="10"/>
+
 							<TextBlock Text="Password" Margin="10"/>
-							<TextBox Watermark="Password" Width="260" Margin="0,0,0,10"/>
+							<TextBox Watermark="Password" Width="260" Margin="0,0,0,10"
+                                     Text="{Binding Password, Mode=TwoWay}"/>
+
+							<TextBlock Text="Re-Enter Password" Margin="10"/>
+							<TextBox Watermark="Re-Enter Password" Width="260" Margin="0,0,0,10"
+                                     Text="{Binding ReenterPassword, Mode=TwoWay}"/>
 
 						</StackPanel>
 					</ScrollViewer>
 				</Border>
 				<StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="20">
-					<Button Content="Rgristor" Command="" Margin="0,0,10,0"/>
-					<Button Content="Cancel" Command="{Binding backToNormlogin}"/>
+					<Button Content="Register" Command="{Binding RegisterBTN}" Margin="0,0,10,0"/>
+					<Button Content="Cancel" Command="{Binding BackToNormlogin}"/>
 				</StackPanel>
 			</StackPanel>
 		</Border>
 	</StackPanel>
-	
 </UserControl>

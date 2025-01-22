@@ -11,12 +11,14 @@ namespace AvaloniaMVVMERPSystem.Classes
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public float SpaceTakken { get; set; }  = 0;
 
-        public Item(int id, string name, string description) 
+        public Item(int id, string name, string description,float spaceTakken) 
         {
             Id = id;
             Name = name;
             Description = description;
+            SpaceTakken = spaceTakken;
         }
     }
 }

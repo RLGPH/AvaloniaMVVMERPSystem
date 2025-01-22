@@ -210,53 +210,82 @@ BEGIN
 END;
 GO
 
--- Create the GetAllLocations stored procedure
+-- GetAllLocations
 CREATE PROCEDURE GetAllLocations
 AS
 BEGIN
-    SELECT LocationId, LocationName, LCountry, LCity, LStreet, LZipCode, StorageSpaceLeft
+    SELECT LocationId, LocationName, LCountry, LCity, LStreet, LZipCode, StorageSpaceLeft, MaxStorageSpaceLeft
     FROM Location;
 END;
 GO
 
+-- AddItems
 CREATE PROCEDURE AddItems
     @ItemName NVARCHAR(255),
-    @Description NVARCHAR(MAX)
+    @Description NVARCHAR(255),
+    @StorageSpaceTakken FLOAT
 AS
 BEGIN
-    INSERT INTO Item (ItemName, ItemDescription)
-    VALUES (@ItemName, @Description);
+    INSERT INTO Item (ItemName, ItemDescription, StorageSpaceTakken)
+    VALUES (@ItemName, @Description, @StorageSpaceTakken);
 
     -- Return the ID of the newly created item
     SELECT SCOPE_IDENTITY() AS NewItemId;
 END;
 GO
 
-
+-- AddCombinedLocation
 CREATE PROCEDURE AddCombinedLocation
     @LocationId INT,
     @ItemId INT
 AS
 BEGIN
-    INSERT INTO CombinedItemLocation (LocationId, ItemId)
-    VALUES (@LocationId, @ItemId);
+    -- Validate storage space availability
+    DECLARE @StorageSpaceLeft FLOAT;
+    DECLARE @StorageSpaceTakken FLOAT;
+
+    SELECT @StorageSpaceLeft = StorageSpaceLeft
+    FROM Location
+    WHERE LocationId = @LocationId;
+
+    SELECT @StorageSpaceTakken = StorageSpaceTakken
+    FROM Item
+    WHERE Id = @ItemId;
+
+    IF @StorageSpaceLeft >= @StorageSpaceTakken
+    BEGIN
+        INSERT INTO CombinedItemLocation (LocationId, ItemId)
+        VALUES (@LocationId, @ItemId);
+
+        -- Update the remaining storage space in the location
+        UPDATE Location
+        SET StorageSpaceLeft = StorageSpaceLeft - @StorageSpaceTakken
+        WHERE LocationId = @LocationId;
+    END
+    ELSE
+    BEGIN
+        RAISERROR ('Not enough storage space available.', 16, 1);
+    END
 END;
 GO
 
+-- AddLocation
 CREATE PROCEDURE AddLocation
     @LocationName NVARCHAR(255),
     @LCountry NVARCHAR(255),
     @LStreet NVARCHAR(255),
     @LCity NVARCHAR(255),
     @LZipCode NVARCHAR(50),
-    @StorageSpaceLeft FLOAT
+    @StorageSpaceLeft FLOAT,
+    @MaxStorageSpaceLeft FLOAT
 AS
 BEGIN
-    INSERT INTO Location (LocationName, LCountry, LStreet, LCity, LZipCode, StorageSpaceLeft)
-    VALUES (@LocationName, @LCountry, @LStreet, @LCity, @LZipCode, @StorageSpaceLeft);
+    INSERT INTO Location (LocationName, LCountry, LStreet, LCity, LZipCode, StorageSpaceLeft, MaxStorageSpaceLeft)
+    VALUES (@LocationName, @LCountry, @LStreet, @LCity, @LZipCode, @StorageSpaceLeft, @MaxStorageSpaceLeft);
 END;
 GO
 
+-- GetItems
 CREATE PROCEDURE GetItems
 AS
 BEGIN
@@ -270,28 +299,33 @@ BEGIN
         l.LStreet,
         l.LZipCode,
         l.StorageSpaceLeft,
+        l.MaxStorageSpaceLeft,
         i.Id AS ItemId,
         i.ItemName,
-        i.ItemDescription
+        i.ItemDescription,
+        i.StorageSpaceTakken
     FROM 
         CombinedItemLocation cil
     INNER JOIN 
         Location l ON cil.LocationId = l.LocationId
     INNER JOIN 
-        Item i ON cil.ItemId = i.Id
+        Item i ON cil.ItemId = i.Id;
 END;
 GO
 
+-- UpdateItem
 CREATE PROCEDURE UpdateItem
     @ItemId INT,
-    @ItemName VARCHAR,
-    @ItemDescription VARCHAR
+    @ItemName NVARCHAR(255),
+    @ItemDescription NVARCHAR(255),
+    @StorageSpaceTakken FLOAT
 AS
 BEGIN
     SET NOCOUNT ON;
 
     UPDATE Item
     SET ItemName = @ItemName,
-        ItemDescription = @ItemDescription
+        ItemDescription = @ItemDescription,
+        StorageSpaceTakken = @StorageSpaceTakken
     WHERE Id = @ItemId;
 END;

@@ -19,7 +19,7 @@ namespace AvaloniaMVVMERPSystem.Models
         {
             location.StorageSpaceLeft = location.StorageSpaceLeft - StorageSpaceTaken;
 
-            Item item = new(0,ItemName,ItemDesctription);
+            Item item = new(0,ItemName,ItemDesctription,StorageSpaceTaken);
             CombinedItemLocation combinedItemLocation = new(0,location,item);
             if (combinedItemLocation != null)
             {
@@ -35,7 +35,7 @@ namespace AvaloniaMVVMERPSystem.Models
         public string AddLocation(Database database, string LocationName, string LCountry, string LCity,
             string LStreet, string LZipCode, float StorageSpaceLeft)
         {
-            Location location = new(0, LocationName, LCountry, LCity, LStreet, LZipCode, StorageSpaceLeft);
+            Location location = new(0, LocationName, LCountry, LCity, LStreet, LZipCode, StorageSpaceLeft, StorageSpaceLeft);
             database.AddLocation(location);
             return "Succes fully added new Location";
         }

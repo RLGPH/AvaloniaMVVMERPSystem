@@ -75,14 +75,16 @@ CREATE TABLE Location (
     LCity VARCHAR(255) NOT NULL,
     LStreet VARCHAR(255) NOT NULL,
     LZipCode VARCHAR(50) NOT NULL,
-    StorageSpaceLeft FLOAT NOT NULL
+    StorageSpaceLeft FLOAT NOT NULL,
+    MaxStorageSpaceLeft FLOAT NOT NULL
 );
 
 -- Table for Item
 CREATE TABLE Item (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     ItemName VARCHAR(255) NOT NULL,
-    ItemDescription VARCHAR(255) NOT NULL
+    ItemDescription VARCHAR(255) NOT NULL,
+    StorageSpaceTakken FLOAT NOT NULL
 );
 
 -- Table for CombinedItemLocation

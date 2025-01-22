@@ -15,9 +15,10 @@ namespace AvaloniaMVVMERPSystem.Classes
         public string LStreet { get; set; }
         public string LZipCode { get; set; }
         public float StorageSpaceLeft {  get; set; }
+        public float MaxStorageSpace {  get; set; }
 
         public Location(int locationId, string locationName, string lCountry, string lCity, string lStreet, 
-            string lZipCode, float storageSpaceLeft) 
+            string lZipCode, float storageSpaceLeft, float maxStorageSpace) 
         {
             LocationId = locationId;
             LocationName = locationName;
@@ -26,6 +27,7 @@ namespace AvaloniaMVVMERPSystem.Classes
             LStreet = lStreet;
             LZipCode = lZipCode;
             StorageSpaceLeft = storageSpaceLeft;
+            MaxStorageSpace = maxStorageSpace;
         }
     }
 }
