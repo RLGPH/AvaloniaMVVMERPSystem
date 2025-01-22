@@ -23,14 +23,14 @@ namespace AvaloniaMVVMERPSystem.Models
             string postalCode, string roadName, string houseNumber, string city, string country, int modId, bool isMod, int adminId, bool isAdmin,
             Database _Database, MainWindowViewModel _MainWindowViewModel, ModelCommands modelCommands, Employee employee)
         {
-            PersonaLInfo info = new(personalInfoId,mail,tlf,address,postalCode,roadName,houseNumber,city,country);
+            PersonaLInfo info = new(personalInfoId,mail,tlf,address,postalCode,roadName,houseNumber,city,country,cprNumber);
             Admin admin = new(adminId,isAdmin);
             Moderator moderator = new(modId,isMod);
 
             adminPassword = PasswordHasher.HashPassword(adminPassword);
             emplyeePassword = PasswordHasher.HashPassword(emplyeePassword);
             
-            Employee NewEmployee = new(employeeId, emplyeePassword, title, workMail, workTlf, adminPassword, personId, firstName, lastName, cprNumber, info, admin, moderator);
+            Employee NewEmployee = new(employeeId, emplyeePassword, title, workMail, workTlf, adminPassword, personId, firstName, lastName, info, admin, moderator);
             _Database.CreateEmployee(NewEmployee);
 
             SwitchToAdminMenu(_Database,_MainWindowViewModel,modelCommands,employee);

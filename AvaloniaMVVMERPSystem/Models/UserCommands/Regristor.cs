@@ -22,7 +22,7 @@ namespace AvaloniaMVVMERPSystem.Models
             {
                 user.UPassWord = Classes.PasswordHasher.HashPassword(user.UPassWord);
 
-                
+                database.AddUser(user);
             }
         }
     }

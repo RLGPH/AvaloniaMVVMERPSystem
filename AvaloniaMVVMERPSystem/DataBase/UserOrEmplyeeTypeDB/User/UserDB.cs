@@ -25,7 +25,7 @@ namespace AvaloniaMVVMERPSystem.DataBase
                     cmd.Parameters.AddWithValue("@FirstName", user.FirstName);
                     cmd.Parameters.AddWithValue("@LastName", user.LastName);
                     cmd.Parameters.AddWithValue("@Password", user.UPassWord);
-                    cmd.Parameters.AddWithValue("@CPR", user.CPRNumber);
+                    cmd.Parameters.AddWithValue("@CPR", user.PInfo.CPRNumber);
                     
                     cmd.ExecuteNonQuery();
                     CreateSqlUser(conn, user.UPassWord, user.FirstName + user.LastName);
@@ -105,7 +105,7 @@ namespace AvaloniaMVVMERPSystem.DataBase
                     cmd.Parameters.AddWithValue("@FirstName", user.FirstName);
                     cmd.Parameters.AddWithValue("@LastName", user.LastName);
                     cmd.Parameters.AddWithValue("@Password", user.UPassWord);
-                    cmd.Parameters.AddWithValue("@CPR", user.CPRNumber);
+                    cmd.Parameters.AddWithValue("@CPR", user.PInfo.CPRNumber);
                     cmd.Parameters.AddWithValue("@PostalCode", user.PInfo.PostalCode);
                     cmd.Parameters.AddWithValue("@Country", user.PInfo.Country);
                     cmd.Parameters.AddWithValue("@Address", user.PInfo.Address);

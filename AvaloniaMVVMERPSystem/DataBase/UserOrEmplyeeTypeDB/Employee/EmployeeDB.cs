@@ -24,7 +24,7 @@ namespace AvaloniaMVVMERPSystem.DataBase
                     cmd.Parameters.AddWithValue("@LastName", employee.LastName);
                     cmd.Parameters.AddWithValue("@Mail", employee.PInfo.Mail);
                     cmd.Parameters.AddWithValue("@Tlf", employee.PInfo.Tlf);
-                    cmd.Parameters.AddWithValue("@CPRNumber", employee.CPRNumber);
+                    cmd.Parameters.AddWithValue("@CPRNumber", employee.PInfo.CPRNumber);
                     cmd.Parameters.AddWithValue("@Address", employee.PInfo.Address);
                     cmd.Parameters.AddWithValue("@PostalCode", employee.PInfo.PostalCode);
                     cmd.Parameters.AddWithValue("@RoadName", employee.PInfo.RoadName);
@@ -71,6 +71,7 @@ namespace AvaloniaMVVMERPSystem.DataBase
                                 roadName: reader.GetString(reader.GetOrdinal("RoadName")),
                                 houseNumber: reader.GetString(reader.GetOrdinal("HouseNumber")),
                                 city: reader.GetString(reader.GetOrdinal("City")),
+                                cprNumber: reader.GetString(reader.GetOrdinal("CPRNumber")),
                                 country: reader.GetString(reader.GetOrdinal("Country"))
                             );
 
@@ -97,7 +98,6 @@ namespace AvaloniaMVVMERPSystem.DataBase
                                 personId: reader.GetInt32(reader.GetOrdinal("PersonId")),
                                 firstName: reader.GetString(reader.GetOrdinal("FirstName")),
                                 lastName: reader.GetString(reader.GetOrdinal("LastName")),
-                                cprNumber: reader.GetString(reader.GetOrdinal("CPRNumber")),
                                 pInfo: personalInfo,
                                 admin: admin,
                                 moderator: moderator
@@ -127,7 +127,7 @@ namespace AvaloniaMVVMERPSystem.DataBase
                         cmd.Parameters.AddWithValue("@LastName", ChangedEmployee.LastName);
                         cmd.Parameters.AddWithValue("@Mail", ChangedEmployee.PInfo.Mail);
                         cmd.Parameters.AddWithValue("@Tlf", ChangedEmployee.PInfo.Tlf);
-                        cmd.Parameters.AddWithValue("@CPRNumber", ChangedEmployee.CPRNumber);
+                        cmd.Parameters.AddWithValue("@CPRNumber", ChangedEmployee.PInfo.CPRNumber);
                         cmd.Parameters.AddWithValue("@Address", ChangedEmployee.PInfo.Address);
                         cmd.Parameters.AddWithValue("@PostalCode", ChangedEmployee.PInfo.PostalCode);
                         cmd.Parameters.AddWithValue("@RoadName", ChangedEmployee.PInfo.RoadName);
@@ -178,6 +178,7 @@ namespace AvaloniaMVVMERPSystem.DataBase
                                 roadName: reader.GetString(reader.GetOrdinal("RoadName")),
                                 houseNumber: reader.GetString(reader.GetOrdinal("HouseNumber")),
                                 city: reader.GetString(reader.GetOrdinal("City")),
+                                cprNumber: reader.GetString(reader.GetOrdinal("CPRNumber")),
                                 country: reader.GetString(reader.GetOrdinal("Country"))
                             );
 
@@ -201,7 +202,6 @@ namespace AvaloniaMVVMERPSystem.DataBase
                                 personId: reader.GetInt32(reader.GetOrdinal("PersonId")),
                                 firstName: reader.GetString(reader.GetOrdinal("FirstName")),
                                 lastName: reader.GetString(reader.GetOrdinal("LastName")),
-                                cprNumber: reader.GetString(reader.GetOrdinal("CPRNumber")),
                                 pInfo: personInfo,
                                 admin: admin,
                                 moderator: moderator

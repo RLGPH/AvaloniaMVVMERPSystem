@@ -329,3 +329,9 @@ BEGIN
         StorageSpaceTakken = @StorageSpaceTakken
     WHERE Id = @ItemId;
 END;
+GO
+
+CREATE PROCEDURE AddUser
+    @FirstName VARCHAR(255) NOT NULL,
+    @LastName VARCHAR(255) NOT NULL,
+    

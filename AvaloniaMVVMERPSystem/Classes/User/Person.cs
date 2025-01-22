@@ -11,7 +11,6 @@ namespace AvaloniaMVVMERPSystem.Classes
         public int PersonId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string CPRNumber { get; set; }
         public PersonaLInfo PInfo { get; set; }
 
         public Person(int personId, string firstName, string lastName, string cprNumber, PersonaLInfo pInfo) 
@@ -19,8 +18,15 @@ namespace AvaloniaMVVMERPSystem.Classes
             PersonId = personId;
             FirstName = firstName;
             LastName = lastName;
-            CPRNumber = cprNumber;
             PInfo = pInfo;
-        } 
+        }
+
+        public Person(int personId, string firstName, string lastName, PersonaLInfo pInfo)
+        {
+            PersonId = personId;
+            FirstName = firstName;
+            LastName = lastName;
+            PInfo = pInfo;
+        }
     }
 }

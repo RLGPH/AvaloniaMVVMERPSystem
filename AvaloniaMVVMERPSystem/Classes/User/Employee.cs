@@ -18,8 +18,8 @@ namespace AvaloniaMVVMERPSystem.Classes
         public Moderator _moderator { get; set; }
 
         public Employee(int employeeId, string emplyeePassword, string title, string workMail, string workTlf
-            ,string adminPassword,int personId, string firstName, string lastName, string cprNumber, PersonaLInfo pInfo, Admin admin, Moderator moderator) :
-            base(personId, firstName, lastName, cprNumber, pInfo) 
+            ,string adminPassword,int personId, string firstName, string lastName, PersonaLInfo pInfo, Admin admin, Moderator moderator) :
+            base(personId, firstName, lastName, pInfo) 
         {
             EmployeeId = employeeId;
             EmployeePassword = emplyeePassword;

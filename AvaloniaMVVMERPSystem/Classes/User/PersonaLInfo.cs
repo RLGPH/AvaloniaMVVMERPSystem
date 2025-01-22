@@ -17,9 +17,24 @@ namespace AvaloniaMVVMERPSystem.Classes
         public string HouseNumber { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
+        public string CPRNumber { get; set; }
 
         public PersonaLInfo(int personalInfoId, string mail, string tlf, string address, string postalCode,
-            string roadName, string houseNumber, string city, string country) 
+            string roadName, string houseNumber, string city, string country, string cprNumber) 
+        {
+            PersonalInfoId = personalInfoId;
+            Mail = mail;
+            Tlf = tlf;
+            Address = address;
+            PostalCode = postalCode;
+            RoadName = roadName;
+            HouseNumber = houseNumber;
+            City = city;
+            Country = country;
+            CPRNumber = cprNumber;
+        }
+
+        public PersonaLInfo(int personalInfoId, string mail, string tlf, string address, string postalCode, string roadName, string houseNumber, string city, string country)
         {
             PersonalInfoId = personalInfoId;
             Mail = mail;

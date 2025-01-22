@@ -178,9 +178,9 @@ namespace AvaloniaMVVMERPSystem.ViewModels
             EditEmployee = ReactiveCommand.Create(() => 
             {
                 PersonaLInfo personaLInfo = new(editEmployee.PInfo.PersonalInfoId,PersonalMail,PersonalPhone,Address,
-                    PostalCode, RoadName, HouseNumber, City, Country);
+                    PostalCode, RoadName, HouseNumber, City, Country, CPRNumber);
                 Employee ChangedEm = new(editEmployee.EmployeeId, editEmployee.EmployeePassword, Title, WorkMail, WorkPhone,
-                    editEmployee.AdminPassword, editEmployee.PersonId, FirstName, LastName, editEmployee.CPRNumber,personaLInfo,editEmployee._admin,editEmployee._moderator);
+                    editEmployee.AdminPassword, editEmployee.PersonId, FirstName, LastName, personaLInfo,editEmployee._admin,editEmployee._moderator);
                 if (Password != null && Password == ReenterPassword && PasswordHasher.VerifyPassword(OldPassword, editEmployee.EmployeePassword))
                 {
                     ChangedEm.EmployeePassword = PasswordHasher.HashPassword(Password);
@@ -206,7 +206,7 @@ namespace AvaloniaMVVMERPSystem.ViewModels
             // Load initial data
             FirstName = editEmployee.FirstName;
             LastName = editEmployee.LastName;
-            CPRNumber = editEmployee.CPRNumber;
+            CPRNumber = editEmployee.PInfo.CPRNumber;
             PostalCode = editEmployee.PInfo.PostalCode;
             Address = editEmployee.PInfo.Address;
             RoadName = editEmployee.PInfo.RoadName;
