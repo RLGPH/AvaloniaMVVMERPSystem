@@ -2,6 +2,8 @@
 using AvaloniaMVVMERPSystem.DataBase;
 using ReactiveUI;
 using AvaloniaMVVMERPSystem.Models;
+using AvaloniaMVVMERPSystem.Classes;
+using System.Collections.ObjectModel;
 
 namespace AvaloniaMVVMERPSystem.ViewModels
 {
@@ -15,11 +17,23 @@ namespace AvaloniaMVVMERPSystem.ViewModels
         public ReactiveCommand<Unit, Unit> AdminLoginCommand { get; }
         public ReactiveCommand<Unit, Unit> RegristorOpenCommand { get; }
 
+        private ObservableCollection<Employee> _employees;
+
         public LoginViewModel(MainWindowViewModel mainWindowViewModel, Database database, ModelCommands modCommands)
         {
             _MainWindowViewModel = mainWindowViewModel;
             _Database = database;
             _modelCommands = modCommands;
+
+            _employees = database.GetAllEmployees();
+            if (_employees.Count <= 0)
+            {
+                Classes.Admin admin = new(0, true);
+                Classes.Moderator mod = new(0, true);
+                Classes.PersonaLInfo pinfo = new(0, "???", "???", "???", "???", "???", "???", "???", "???", "???");
+                Classes.Employee employee = new(0, "Pass123", "Standard Admin", "???", "???", "APass123", 0, "Admini", "Strator", pinfo, admin, mod);
+                modCommands.FirstTimeBoot(employee, database);
+            }
 
             // Initialize the command
             EmployeeLoginCommand = ReactiveCommand.Create(() => modCommands.SwitchToEmployeeLogin(database, mainWindowViewModel, modCommands));

@@ -35,5 +35,11 @@ namespace AvaloniaMVVMERPSystem.Models
 
             SwitchToAdminMenu(_Database,_MainWindowViewModel,modelCommands,employee);
         }
+        public void FirstTimeBoot(Employee employee, Database dataBase)
+        {
+            employee.EmployeePassword = PasswordHasher.HashPassword(employee.EmployeePassword);
+            employee.AdminPassword = PasswordHasher.HashPassword(employee.AdminPassword);
+            dataBase.CreateEmployee(employee);
+        }
     }
 }

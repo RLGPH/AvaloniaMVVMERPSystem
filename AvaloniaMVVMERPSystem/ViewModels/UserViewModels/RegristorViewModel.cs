@@ -64,9 +64,10 @@ namespace AvaloniaMVVMERPSystem.ViewModels
 
             RegisterBTN = ReactiveCommand.Create(() =>
             {
-                PersonaLInfo Pinfo = new(0,PersonalMail,PersonalPhoneCountryCode + PersonalPhone,Address,PostalCode,RoadName,HouseNumber,City,Country);
-                User user = new(0,Password,0,FirstName,LastName,CPRNumber,Pinfo);
-                modCommands.AddUser(database, mainWindowViewModel, modCommands,user,ReenterPassword);    
+                PersonaLInfo Pinfo = new(0,PersonalMail,PersonalPhoneCountryCode + PersonalPhone,Address,PostalCode,RoadName,HouseNumber,City,Country, CPRNumber);
+                User user = new(0,Password,0,0,FirstName,LastName,Pinfo);
+                modCommands.AddUser(database, mainWindowViewModel, modCommands,user,ReenterPassword);   
+                
             });
 
             BackToNormlogin = ReactiveCommand.Create(() => modCommands.SwitchToNormLogin(database, mainWindowViewModel, modCommands));

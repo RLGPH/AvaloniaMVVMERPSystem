@@ -36,16 +36,24 @@
                                      Text="{Binding PersonalMail, Mode=TwoWay}"/>
 
 							<!-- Phone Number Input -->
-							<TextBlock Text="Phone Number" Margin="10"/>
-							<TextBox Watermark="Phone Number" Width="260" Margin="0,0,0,10"
-                                     Text="{Binding PersonalPhone, Mode=TwoWay}"/>
-
+							<StackPanel Margin="5">
+								<TextBlock Text="Phone number" Margin="4"/>
+								<StackPanel Orientation="Horizontal" Margin="4">
+									<ComboBox Margin="0,0,10,0" SelectedItem="{Binding PersonalPhoneCountryCode}" ItemsSource="{Binding CountryCodes}"/>
+									<TextBox Text="{Binding PersonalPhone}" Watermark="12345678" Width="125"/>
+								</StackPanel>
+							</StackPanel>
+							
 							<!-- Address Inputs -->
-							<TextBlock Text="Address" Margin="10"/>
+							<StackPanel Margin="4">
+								<TextBlock Text="Address" Margin="4"/>
+								<TextBox Text="{Binding Address}" Width="170" Margin="4"/>
+							</StackPanel>
+							
 							<StackPanel Orientation="Horizontal" Margin="0,0,0,10">
 								<TextBox Watermark="Street Name" Margin="0,0,20,0" Width="160"
                                          Text="{Binding RoadName, Mode=TwoWay}"/>
-								<TextBox Watermark="House Number" Width="80"
+								<TextBox Watermark="House Number" Width="120"
                                          Text="{Binding HouseNumber, Mode=TwoWay}"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal" Margin="0,0,0,10">

@@ -10,12 +10,14 @@ namespace AvaloniaMVVMERPSystem.Classes
     {
         public int UserId { get; set; }
         public string UPassWord { get; set; }
+        public float Balance { get; set; }
 
-        public User(int userId, string UpassWord, int personId, string firstName, string lastName, string cprNumber, PersonaLInfo pInfo) 
-            :base(personId,firstName,lastName,cprNumber,pInfo)
+        public User(int userId, string UpassWord, float balance, int personId, string firstName, string lastName, PersonaLInfo pInfo) 
+            :base(personId,firstName,lastName,pInfo)
         { 
             UserId = userId;
             UPassWord = UpassWord;
+            Balance = balance;
         }
     }
 }

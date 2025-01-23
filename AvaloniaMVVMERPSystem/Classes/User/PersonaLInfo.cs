@@ -33,18 +33,5 @@ namespace AvaloniaMVVMERPSystem.Classes
             Country = country;
             CPRNumber = cprNumber;
         }
-
-        public PersonaLInfo(int personalInfoId, string mail, string tlf, string address, string postalCode, string roadName, string houseNumber, string city, string country)
-        {
-            PersonalInfoId = personalInfoId;
-            Mail = mail;
-            Tlf = tlf;
-            Address = address;
-            PostalCode = postalCode;
-            RoadName = roadName;
-            HouseNumber = houseNumber;
-            City = city;
-            Country = country;
-        }
     }
 }

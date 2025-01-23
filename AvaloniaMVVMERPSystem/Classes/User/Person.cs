@@ -13,15 +13,7 @@ namespace AvaloniaMVVMERPSystem.Classes
         public string LastName { get; set; }
         public PersonaLInfo PInfo { get; set; }
 
-        public Person(int personId, string firstName, string lastName, string cprNumber, PersonaLInfo pInfo) 
-        {
-            PersonId = personId;
-            FirstName = firstName;
-            LastName = lastName;
-            PInfo = pInfo;
-        }
-
-        public Person(int personId, string firstName, string lastName, PersonaLInfo pInfo)
+        public Person(int personId, string firstName, string lastName, PersonaLInfo pInfo) 
         {
             PersonId = personId;
             FirstName = firstName;
