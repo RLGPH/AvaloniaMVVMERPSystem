@@ -11,15 +11,18 @@
 			<StackPanel Margin="5">
 				<TextBlock Text="Welcome to {CompanyName}" FontSize="20" Margin="20"/>
 				
-				<TextBlock Text="Username" Margin="10"/>
-				<TextBox Watermark="UserName" />
+				<TextBlock Text="First Name" Margin="10"/>
+				<TextBox Watermark="First Name" Text="{Binding FirstName}"/>
+				
+				<TextBlock Text="Last Name" Margin="10"/>
+				<TextBox Watermark="Last Name" Text="{Binding LastName}"/>
 				
 				<TextBlock Text="Password" Margin="10"/>
-				<TextBox Watermark="Password" />
+				<TextBox Watermark="Password" Text="{Binding Password}"/>
 				
 				<StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="20">
 				
-					<Button Content="Login" Command="" Margin="0,0,10,0"/>
+					<Button Content="Login" Command="{Binding LoginCommand}" Margin="0,0,10,0"/>
 					<Button Content="Regristor account" Command="{Binding RegristorOpenCommand}"/>
 				
 				</StackPanel>

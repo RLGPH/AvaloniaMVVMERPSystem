@@ -564,6 +564,37 @@ BEGIN
 END;
 GO
 
+CREATE PROCEDURE GetUserByFullName
+    @FirstName VARCHAR(28),
+    @LastName VARCHAR(28)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        u.UserId AS UId,
+        u.UPassWord AS UserPassword,
+        u.Balance,
+        p.PersonId,
+        p.FirstName,
+        p.LastName,
+        pi.PAddressId AS Id,
+        pi.Mail,
+        pi.Tlf,
+        pi.Address,
+        pi.PostalCode,
+        pi.RoadName,
+        pi.HouseNumber,
+        pi.City,
+        pi.Country,
+        pi.CPRNumber
+    FROM UsersTB u
+    INNER JOIN PersonTB p ON u.PersonId = p.PersonId
+    INNER JOIN PersonInfoTB pi ON p.PAddressId = pi.PAddressId
+    WHERE p.FirstName = @FirstName AND p.LastName = @LastName;
+END;
+GO
+
 USE [PhoenixEnterpriseDB];
 GO
 CREATE USER [AddsUsers_User] FOR LOGIN [AddsUsers_User];

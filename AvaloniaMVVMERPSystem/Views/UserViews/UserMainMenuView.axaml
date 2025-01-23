@@ -21,8 +21,8 @@
 		<StackPanel HorizontalAlignment="Center" Grid.ColumnSpan="2">
 			<TextBlock Text="Welcome" FontSize="20" Margin="20" HorizontalAlignment="Center"/>
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-				<TextBlock Text="'{FirstName}'"/>
-				<TextBlock Text="'{LastName}'"/>
+				<TextBlock Text="{Binding FirstName}" Margin="4"/>
+				<TextBlock Text="{Binding LastName}" Margin="4"/>
 			</StackPanel>
 		</StackPanel>
 		<StackPanel Grid.RowSpan="2" VerticalAlignment="Center" Margin="20">
@@ -32,10 +32,10 @@
 			</ListBox>
 		</StackPanel>
 		<StackPanel Grid.Column="2" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="20">
-			<Button Content="Edit Account" Margin="10"/>
-			<Button Content="Order History" Margin="10"/>
-			<Button Content="+Order" Background="Green" Margin="10"/>
-			<Button Content="Logout" Background="Red" Margin="10"/>
+			<Button Content="Edit Account" Command="{Binding EditAccount}" Margin="10"/>
+			<Button Content="Order History" Command="{Binding OrderHistory}" Margin="10"/>
+			<Button Content="+Order" Background="Green" Command="{Binding OrderBTN}" Margin="10"/>
+			<Button Content="Logout" Background="Red" Command="{Binding LogoutBTN}" Margin="10"/>
 		</StackPanel>
 	</Grid>
 </UserControl>

@@ -51,5 +51,13 @@ namespace AvaloniaMVVMERPSystem.Models
         {
             _mainViewModel.SwitchViewModel(new EditInventoryViewModel(_mainViewModel,_dataBase, modelCommands, _employee));
         }
+        public void SwitchToUserMainNoLogin(Database _dataBase, MainWindowViewModel _mainViewModel, ModelCommands modelCommands, User user)
+        {
+            _mainViewModel.SwitchViewModel(new UserMainMenuViewModel(_mainViewModel, _dataBase, modelCommands, user));
+        }
+        public void SwitchToUserEdit(Database _dataBase, MainWindowViewModel _mainViewModel, ModelCommands modelCommands, User user)
+        {
+            _mainViewModel.SwitchViewModel(new EditUserAccountViewModel(_mainViewModel, _dataBase, modelCommands, user));
+        }
     }
 }

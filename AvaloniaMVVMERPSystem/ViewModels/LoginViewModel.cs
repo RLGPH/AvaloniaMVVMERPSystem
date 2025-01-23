@@ -13,6 +13,27 @@ namespace AvaloniaMVVMERPSystem.ViewModels
         private readonly Database _Database;
         private ModelCommands _modelCommands;
 
+        private string _firstName;
+        private string _lastName;
+        private string _Password;
+        public string FirstName
+        {
+            get => _firstName;
+            set => this.RaiseAndSetIfChanged(ref _firstName, value);
+        }
+
+        public string LastName
+        {
+            get => _lastName;
+            set => this.RaiseAndSetIfChanged(ref _lastName, value);
+        }
+        public string Password
+        {
+            get => _Password;
+            set => this.RaiseAndSetIfChanged(ref _Password, value);
+        }
+
+        public ReactiveCommand<Unit, Unit> LoginCommand { get; set; }
         public ReactiveCommand<Unit, Unit> EmployeeLoginCommand { get; }
         public ReactiveCommand<Unit, Unit> AdminLoginCommand { get; }
         public ReactiveCommand<Unit, Unit> RegristorOpenCommand { get; }
@@ -37,8 +58,12 @@ namespace AvaloniaMVVMERPSystem.ViewModels
 
             // Initialize the command
             EmployeeLoginCommand = ReactiveCommand.Create(() => modCommands.SwitchToEmployeeLogin(database, mainWindowViewModel, modCommands));
+            
             AdminLoginCommand = ReactiveCommand.Create(() => modCommands.SwitchToAdminLogin(database, mainWindowViewModel, modCommands));
+
             RegristorOpenCommand = ReactiveCommand.Create(() => modCommands.SwitchToRegristor(database, mainWindowViewModel, modCommands));
+
+            LoginCommand = ReactiveCommand.Create(() => modCommands.SwitchToUserMainPage(FirstName,LastName,Password,database,mainWindowViewModel,modCommands));
         }
     }
 }

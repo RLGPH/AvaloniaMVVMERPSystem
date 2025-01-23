@@ -91,6 +91,51 @@ namespace AvaloniaMVVMERPSystem.DataBase
             }
             return null;
         }
+        public User? GetUserByName(string firstName, string lastName)
+        {
+            using (SqlConnection conn = GetConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("GetUserByFullName", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@FirstName", firstName);
+                    cmd.Parameters.AddWithValue("@LastName", lastName);
+
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var Pinfo = new PersonaLInfo(
+                                personalInfoId: reader.GetInt32(reader.GetOrdinal("Id")),
+                                mail: (string)reader["Mail"],
+                                tlf: (string)reader["Tlf"],
+                                address: (string)reader["Address"],
+                                postalCode: (string)reader["PostalCode"],
+                                roadName: (string)reader["RoadName"],
+                                houseNumber: (string)reader["HouseNumber"],
+                                city: (string)reader["City"],
+                                country: (string)reader["Country"],
+                                cprNumber: (string)reader["CprNumber"]
+                            );
+
+                            var user = new User(
+                                userId: reader.GetInt32(reader.GetOrdinal("UId")),
+                                UpassWord: (string)reader["UserPassword"],
+                                balance: (float)reader.GetDecimal(reader.GetOrdinal("Balance")),
+                                personId: reader.GetInt32(reader.GetOrdinal("PersonId")),
+                                firstName: (string)reader["FirstName"],
+                                lastName: (string)reader["LastName"],
+                                Pinfo
+                            );
+                            conn.Close();
+                            return user;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
 
         public void UpdateUser(User user)
         {
