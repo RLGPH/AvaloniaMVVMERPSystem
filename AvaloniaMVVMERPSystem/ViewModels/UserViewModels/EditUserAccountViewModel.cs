@@ -118,6 +118,7 @@ namespace AvaloniaMVVMERPSystem.ViewModels
         }
 
         // Commands
+        public ReactiveCommand<Unit, Unit> AddBalance { get; }
         public ReactiveCommand<Unit, Unit> SaveEdit { get; }
         public ReactiveCommand<Unit, Unit> BackToMain { get; }
 

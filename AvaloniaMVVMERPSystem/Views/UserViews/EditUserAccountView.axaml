@@ -20,8 +20,7 @@
 		<StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
 			<TextBlock Text="Status"/>
 			<TextBlock Text="{Binding Status}"/>
-			<TextBlock Text="Check if User or data exist"/>
-			<Button Content="Check" Margin="4" Width="114"/>
+			<Button Content="Add Balance" Command="{Binding AddBalance}" Margin="4" Width="114"/>
 			<Button Content="Save Edit" Command="{Binding SaveEdit}" Width="114" Margin="4"/>
 			<Button Content="Back" Command="{Binding BackToMain}" Width="114" Margin="4"/>
 		</StackPanel>
@@ -38,6 +37,12 @@
 						<StackPanel Margin="5">
 							<TextBlock Text="Last name" Margin="4"/>
 							<TextBox Text="{Binding LastName}" Margin="4" Width="150"/>
+						</StackPanel>
+						
+						<!--Balance Fields-->
+						<StackPanel Margin="5">
+							<TextBlock Text="Balance" Margin="4"/>
+							<TextBox Margin="4" MinWidth="150" IsReadOnly="True" Text="{Binding Balance}"/>
 						</StackPanel>
 
 						<!-- Password Fields -->
