@@ -149,7 +149,10 @@ namespace AvaloniaMVVMERPSystem.ViewModels
                     Password, ReenterPassword, OldPassword, user, database
                 );
             });
+
             BackToMain = ReactiveCommand.Create(() => modCommands.SwitchToUserMainNoLogin(database, mainWindowViewModel, modCommands, user));
+
+           // AddBalance = ReactiveCommand.Create(() => );
         }
     }
 }

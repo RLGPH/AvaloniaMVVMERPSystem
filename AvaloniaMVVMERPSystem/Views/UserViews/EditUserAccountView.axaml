@@ -17,6 +17,10 @@
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
 
+		<Popup>
+			
+		</Popup>
+		
 		<StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
 			<TextBlock Text="Status"/>
 			<TextBlock Text="{Binding Status}"/>
