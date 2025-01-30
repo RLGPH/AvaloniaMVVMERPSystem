@@ -10,6 +10,7 @@ namespace AvaloniaMVVMERPSystem.DataBase
 {
     public partial class Database
     {
+        //jnldfnbdjfnb
         private static SqlConnection GetConnection()
         {
             SqlConnectionStringBuilder sb = new SqlConnectionStringBuilder
